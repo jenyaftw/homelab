@@ -34,13 +34,12 @@ spec:
     ingress:
       enabled: true
       className: nginx
-      annotations:
-        nginx.ingress.kubernetes.io/auth-tls-secret: "infra/${BASE_DOMAIN}"
       hosts:
         - host: &host "podinfo.${BASE_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
       tls:
-        - hosts:
+        - secretName: ${BASE_DOMAIN}
+          hosts:
             - *host
