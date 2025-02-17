@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: bitnami
+  namespace: infra
+spec:
+  interval: 5m
+  url: oci://registry-1.docker.io/bitnamicharts
