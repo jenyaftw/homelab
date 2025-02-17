@@ -10,6 +10,7 @@ patches:
         name: podinfo
       spec:
         minReplicas: 10
+        maxReplicas: 10
     target:
       name: podinfo
       kind: HorizontalPodAutoscaler
