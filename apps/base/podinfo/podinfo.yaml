@@ -35,12 +35,11 @@ spec:
       enabled: true
       className: nginx
       hosts:
-        - host: &host "podinfo.${BASE_DOMAIN}"
+        - host: "podinfo.${BASE_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
       tls:
-        - secretName: "infra/${BASE_DOMAIN}"
+        - secretName: "${BASE_DOMAIN}"
           hosts:
             - "*.${BASE_DOMAIN}"
-            - *host
