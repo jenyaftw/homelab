@@ -29,5 +29,14 @@ spec:
       - paths: ["/spec/replicas"]
         target:
           kind: Deployment
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: podinfo.jenya.lol
   values:
     replicaCount: 2
