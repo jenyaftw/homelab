@@ -40,6 +40,6 @@ spec:
             - path: /
               pathType: Prefix
       tls:
-        - secretName: "${BASE_DOMAIN}"
+        - secretName: "infra/${BASE_DOMAIN}"
           hosts:
             - "*.${BASE_DOMAIN}"
