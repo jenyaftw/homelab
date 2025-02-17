@@ -12,7 +12,7 @@ spec:
     solvers:
       - dns01:
           cloudflare:
-            email: me@jenya.lol
+            email: ${personalEmail}
             apiKeySecretRef:
               name: cloudflare-secret
               key: cloudflareKey
