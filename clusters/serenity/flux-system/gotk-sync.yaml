@@ -9,6 +9,7 @@ spec:
   interval: 1m0s
   ref:
     branch: main
+  prune: true
   secretRef:
     name: flux-system
   url: ssh://git@github.com/jenyaftw/homelab
