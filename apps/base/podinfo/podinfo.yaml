@@ -39,3 +39,7 @@ spec:
           paths:
             - path: /
               pathType: Prefix
+      tls:
+        - secretName: "${BASE_DOMAIN}"
+          hosts:
+            - "*.${BASE_DOMAIN}"
