@@ -13,3 +13,18 @@ spec:
   dnsNames:
     - "jenya.lol"
     - "*.jenya.lol"
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Host
+metadata:
+  name: jenya-host
+  namespace: infra
+spec:
+  hostname: "*.jenya.lol"
+  acmeProvider:
+    authority: none
+  tlsSecret:
+    name: jenya.lol
+  selector:
+    matchLabels:
+      hostname: jenya-host
