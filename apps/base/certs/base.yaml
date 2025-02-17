@@ -1,15 +1,15 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: jenya.lol
-  namespace: infra
+  name: ${BASE_DOMAIN}
+  namespace: apps
 spec:
-  secretName: jenya.lol
+  secretName: ${BASE_DOMAIN}
   issuerRef:
     name: letsencrypt-dev-wcard
     kind: ClusterIssuer
     group: cert-manager.io
-  commonName: "*.jenya.lol"
+  commonName: &commonName "*.${BASE_DOMAIN}"
   dnsNames:
-    - "jenya.lol"
-    - "*.jenya.lol"
+    - "${BASE_DOMAIN}"
+    - *commonName
