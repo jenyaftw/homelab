@@ -7,7 +7,7 @@ spec:
   secretName: jenya.lol
   issuerRef:
     name: letsencrypt-dev-wcard
-    kind: Issuer
+    kind: ClusterIssuer
     group: cert-manager.io
   commonName: "*.jenya.lol"
   dnsNames:
