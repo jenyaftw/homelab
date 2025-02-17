@@ -4,3 +4,4 @@ resources:
   - cloudflare-secret.yaml
   - cert-manager.yaml
   - issuer.yaml
+  - certs/
