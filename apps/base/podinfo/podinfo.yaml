@@ -34,3 +34,6 @@ spec:
     ingress:
       enabled: true
       className: nginx
+      spec:
+      rules:
+        - host: podinfo.jenya.lol
