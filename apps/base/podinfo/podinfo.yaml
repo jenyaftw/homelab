@@ -33,7 +33,7 @@ spec:
     replicaCount: 2
     ingress:
       enabled: true
-      ingressClassName: nginx
+      className: nginx
       hosts:
         - host: "podinfo.${BASE_DOMAIN}"
           paths:
