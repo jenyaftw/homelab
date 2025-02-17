@@ -5,13 +5,14 @@ metadata:
   namespace: infra
 spec:
   acme:
-    email: ${personalEmail}
+    email: me@jenya.lol
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-dev-wcard-private
-    # solvers:
-    #   - dns01:
-    #       digitalocean:
-    #         tokenSecretRef:
-    #           name: digitalocean-dns
-    #           key: access-token
+    solvers:
+      - dns01:
+          cloudflare:
+            email: me@jenya.lol
+            apiKeySecretRef:
+              name: cloudflare-secret
+              key: cloudflare-key
