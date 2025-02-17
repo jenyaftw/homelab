@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-dev-wcard
+  namespace: infra
+spec:
+  acme:
+    email: ${personalEmail}
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-dev-wcard-private
+    # solvers:
+    #   - dns01:
+    #       digitalocean:
+    #         tokenSecretRef:
+    #           name: digitalocean-dns
+    #           key: access-token
