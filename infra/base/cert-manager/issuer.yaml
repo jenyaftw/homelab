@@ -15,4 +15,4 @@ spec:
             email: me@jenya.lol
             apiKeySecretRef:
               name: cloudflare-secret
-              key: cloudflare-key
+              key: cloudflareKey
