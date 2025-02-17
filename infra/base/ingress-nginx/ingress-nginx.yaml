@@ -18,5 +18,6 @@ spec:
     controller:
       service:
         type: "LoadBalancer"
+      allowSnippetAnnotations: true
     admissionWebhooks:
       enabled: false
