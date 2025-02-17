@@ -35,5 +35,5 @@ spec:
       enabled: true
       className: nginx
       spec:
-      rules:
-        - host: podinfo.jenya.lol
+        rules:
+          - host: podinfo.jenya.lol
