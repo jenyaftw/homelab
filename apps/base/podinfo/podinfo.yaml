@@ -42,4 +42,4 @@ spec:
       tls:
         - secretName: "${BASE_DOMAIN}"
           hosts:
-            - "podinfo.${BASE_DOMAIN}"
+            - "*.${BASE_DOMAIN}"
