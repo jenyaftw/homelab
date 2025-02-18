@@ -21,9 +21,7 @@ spec:
       enabled: true
       className: nginx
       hosts:
-        - host: &host "docker.${BASE_DOMAIN}"
-          paths:
-            - /
+        - &host "docker.${BASE_DOMAIN}"
       tls:
         - secretName: ${BASE_DOMAIN}
           hosts:
