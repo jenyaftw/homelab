@@ -6,3 +6,4 @@ metadata:
 data:
   CLUSTER_IP: "192.168.0.40"
   BASE_DOMAIN: "jenya.lol"
+  PIHOLE_DOMAIN: "192.168.0.3"
