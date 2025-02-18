@@ -4,3 +4,4 @@ resources:
   - ../base
   - ../base/ingress-nginx
   - ../base/cert-manager
+  - ../base/external-dns
