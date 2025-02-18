@@ -37,15 +37,16 @@ spec:
       name: jenkins
       annotations: {}
 
-    ingress:
-      enabled: true
-      className: nginx
-      hosts:
-        - host: &host "jenkins.${BASE_DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: ${BASE_DOMAIN}
-          hosts:
-            - *host
+    controller:
+      ingress:
+        enabled: true
+        className: nginx
+        hosts:
+          - host: &host "jenkins.${BASE_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: ${BASE_DOMAIN}
+            hosts:
+              - *host
