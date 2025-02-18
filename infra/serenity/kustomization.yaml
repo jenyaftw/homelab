@@ -6,4 +6,3 @@ resources:
   - ../base/cert-manager
   - ../base/external-dns
   - ../base/registry
-  - ../base/arc
