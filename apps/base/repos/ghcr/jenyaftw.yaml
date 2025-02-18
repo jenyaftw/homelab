@@ -1,10 +1,13 @@
-apiVersion: v1
-kind: Secret
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
 metadata:
-    name: ghcr-jenyaftw-secret
+    name: waitle-waitlist-api
     namespace: apps
-data:
-    .dockerconfigjson: ENC[AES256_GCM,data:GBZpRkQMhTxWS1sQm/6Mi9QUzUK2+7ycXsyBkaRCl01lGWFYYOivaT9Kd7hr0BW6aZc+jLYiBlV/TyjFxjwU2t7ImCVhr7zXlLTFtAiDQpgXI1MwO8eMXPJXGabdO7ORhCpQAz4XqaEAHihtFDboGrHFiHJZppVtx1sf2g==,iv:L2rtXi1a1yv/fNKMIkAXGR0aWEtdsrYN9Mm69CT6yLg=,tag:dH8PEuSuqWVHY3R0eevFBw==,type:str]
+spec:
+    image: ghcr.io/jenyaftw/waitle-waitlist-api
+    interval: 1h
+    secretRef:
+        name: ghcr-jenyaftw-secret
 sops:
     kms: []
     gcp_kms: []
@@ -14,14 +17,42 @@ sops:
         - recipient: age1h440ezlz0n2wf57mvdzfes8hglf7p543ryggjwgywlwlrwlmhczs4qtdzz
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA3N2YvNFQ1eU5MMDduRnVF
-            WHU4OHE5aks2R3RhYUF2WFh6S0RzaTd3YlIwCjZUR2cyWlBqZk1veEUrbC9PYlF1
-            bXk5bHJIWVJRcUIzdlZJRVRnSnlJVFUKLS0tIDZ1RHhjQ1crYy83bWNTUk42eDNw
-            YVpTUE5ib0o0ejBoY21IMEJhcGJIbDQKYDWC3BEMLuhx0g4Rw2lnzp7bIN6Aksl4
-            h6ZyNdbJy5B+58N/T2/nJ8hDYhiAm1fafmKpfmjTtZPH/hvtV/sjlg==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArUWtUR2RCa0ZPY1UvM2NO
+            T001UkNnclFYT0JBM1BlUy9oL1JidnRMZ1dFCnhyYmNxbmg3eFdydlFUZXNER1ll
+            RXh3aTZ4ZkxiaC9QOVh4UktoVEFCSFkKLS0tIFBrV3E4dnROc3JBcmJndG1XQ3hS
+            WXNpTi9FVWo0SjFmbmVJTFczQ1ZtSjgK1T55Ipvxm8pp7JcsPFcmFM2rRlvUpsVU
+            zK10KaAycWikb2KJ75thCiS7z/9p5JmCIF5vJT2pGrqLcV/pzCpNCQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-02-18T17:41:52Z"
-    mac: ENC[AES256_GCM,data:tbYE2hXuI8neSQk+dgSKbgfvsOPUz2XG/uJXaHrG49iqKc+J/sU0kF1ua97RG+K5Trm8BRrlpCyjdY9R5ozUzgXK16a9wDkrEZKsmnw2kf2q8NUtAEnXB27Isjkiqs4VNKbA20d2g2HnobBwip2l0Cng7rk34XVhIwI6vAvT7Ec=,iv:ok+YoIPvbDyQGWXBFyQWqv2VtKds4bNcImhMtUunOxs=,tag:eNKABg5i6acwSvgU0QxIZw==,type:str]
+    lastmodified: "2025-02-18T17:47:49Z"
+    mac: ENC[AES256_GCM,data:caPIKxWBzNADv6fTQuxKPQ6zwHQDg57vfsDzOuaYqTyXORO9SMFb42tu7HAwpmIqclI/9is8QxOB0tHKaBUQaQolDIpubn1kFSkYuqi2hFBQUzPDbXj+dqLVwDseLwKn2+K0XP1uvGbLD59zTqXVPUgR4g/4YXas1qY+fABpIAA=,iv:tK0p5Ct8buFCWzdRmBP6GHPuQbBaKFkiHPNktjBwdS4=,tag:WkYkgT+0YZ62ijQfv1+prQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.9.4
+---
+apiVersion: v1
+kind: Secret
+metadata:
+    name: ghcr-jenyaftw-secret
+    namespace: apps
+data:
+    .dockerconfigjson: ENC[AES256_GCM,data:g3Cthdh/EWMwAG9US0L9ojyM6BGHNMBhq5m73DJdjiZlf5BQeE7gQLLPidr87Bww18ihO01xXh+Zi/E/o6EhB/4lPXfNGGolbDOHt8QTEWSgon07ZmhGHY36mcK+Ai5uAjZtcU2kWBedmd+4b+csg2XzF7yFsjOjyVAs/g==,iv:1HyPjLfQLhQ+LztcrvyrnUR92bCbkam7kaXLp27CD64=,tag:VYOpzTF7VM9bPtNgB2jJbg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1h440ezlz0n2wf57mvdzfes8hglf7p543ryggjwgywlwlrwlmhczs4qtdzz
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArUWtUR2RCa0ZPY1UvM2NO
+            T001UkNnclFYT0JBM1BlUy9oL1JidnRMZ1dFCnhyYmNxbmg3eFdydlFUZXNER1ll
+            RXh3aTZ4ZkxiaC9QOVh4UktoVEFCSFkKLS0tIFBrV3E4dnROc3JBcmJndG1XQ3hS
+            WXNpTi9FVWo0SjFmbmVJTFczQ1ZtSjgK1T55Ipvxm8pp7JcsPFcmFM2rRlvUpsVU
+            zK10KaAycWikb2KJ75thCiS7z/9p5JmCIF5vJT2pGrqLcV/pzCpNCQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-02-18T17:47:49Z"
+    mac: ENC[AES256_GCM,data:caPIKxWBzNADv6fTQuxKPQ6zwHQDg57vfsDzOuaYqTyXORO9SMFb42tu7HAwpmIqclI/9is8QxOB0tHKaBUQaQolDIpubn1kFSkYuqi2hFBQUzPDbXj+dqLVwDseLwKn2+K0XP1uvGbLD59zTqXVPUgR4g/4YXas1qY+fABpIAA=,iv:tK0p5Ct8buFCWzdRmBP6GHPuQbBaKFkiHPNktjBwdS4=,tag:WkYkgT+0YZ62ijQfv1+prQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.9.4
