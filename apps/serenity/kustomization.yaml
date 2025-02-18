@@ -4,3 +4,4 @@ resources:
   - ../base
   - ../base/podinfo
   - ../base/arc
+  - ../base/jellyfin
