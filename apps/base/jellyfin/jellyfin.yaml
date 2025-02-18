@@ -46,5 +46,5 @@ spec:
     persistence:
       media:
         type: hostPath
-        mountPath: /media
+        mountPath: /data/media
         hostPath: /data/media
