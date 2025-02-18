@@ -45,9 +45,4 @@ spec:
 
     persistence:
       media:
-        enabled: false
-      data:
-        enabled: true
-        type: hostPath
-        mountPath: /data
-        hostPath: /data
+        existingClaim: jellyfin-media-pvc
