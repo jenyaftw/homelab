@@ -4,4 +4,4 @@ resources:
   - ingress-nginx.yaml
   - jetstack.yaml
   - twuni.yaml
-  - gh-arc.yaml
+  - gh-actions.yaml
