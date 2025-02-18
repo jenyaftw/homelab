@@ -30,7 +30,6 @@ spec:
         target:
           kind: Deployment
   values:
-    nodePort: 32000
     storageClass: jenkins-pv
     serviceAccount:
       create: false
