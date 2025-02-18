@@ -5,3 +5,4 @@ resources:
   # - ../base/podinfo
   - ../base/arc
   - ../base/jellyfin
+  - ../base/jenkins
