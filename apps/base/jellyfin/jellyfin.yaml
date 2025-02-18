@@ -45,6 +45,9 @@ spec:
 
     persistence:
       media:
+        enabled: false
+      data:
+        enabled: true
         type: hostPath
-        mountPath: /data/media
-        hostPath: /data/media
+        mountPath: /data
+        hostPath: /data
