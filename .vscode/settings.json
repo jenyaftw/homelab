@@ -1,0 +1,5 @@
+{
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/architect/parser/v2.3.0/arc-schema.json": "file:///Users/jenya/code/personal/homelab/infra/base/repos/arc.yaml"
+  }
+}
