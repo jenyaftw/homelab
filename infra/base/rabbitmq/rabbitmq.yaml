@@ -29,7 +29,6 @@ spec:
         target:
           kind: Deployment
   values:
-    fullnameOverride: jenya
     auth:
       username: jenya
       updatePassword: true
