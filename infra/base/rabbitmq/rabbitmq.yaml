@@ -62,7 +62,7 @@ spec:
       enabled: true
       ingressClassName: nginx
       hostname: &host "rabbitmq.${BASE_DOMAIN}"
-      tls:
+      extraTls:
         - secretName: ${BASE_DOMAIN}
           hosts:
             - *host
