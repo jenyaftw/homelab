@@ -7,4 +7,4 @@ resources:
   - ../base/jellyfin
   - ../base/jenkins
   - ../base/pgadmin
-  - ../base/orchard-bot
+  # - ../base/orchard-bot
