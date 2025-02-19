@@ -6,4 +6,4 @@ resources:
   - ../base/cert-manager
   - ../base/external-dns
   - ../base/rabbitmq
-  # - ../base/postgres
+  - ../base/postgres
