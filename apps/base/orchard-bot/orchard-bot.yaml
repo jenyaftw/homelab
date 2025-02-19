@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orchard-bot
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orchard-bot
+  template:
+    metadata:
+      labels:
+        app: orchard-bot
+    spec:
+      containers:
+        - name: orchard-bot
+          image: ghcr.io/jenyaftw/orchard-bot:latest
+          envFrom:
+            - secretRef:
+                name: orchard-bot-secret
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config.toml
+              subPath: config.toml
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              envsubst < /config.toml > /config.toml
+              exec /orchard-bot
+      imagePullSecrets:
+        - name: ghcr-jenyaftw
+      volumes:
+        - name: config-volume
+          configMap:
+            name: orchard-bot-config
