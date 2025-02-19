@@ -23,6 +23,11 @@ spec:
             - name: config-volume
               mountPath: /config.toml
               subPath: config.toml
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              envsubst < /config.toml > /config.toml
+              exec /orchard-bot
       imagePullSecrets:
         - name: ghcr-jenyaftw
       volumes:
