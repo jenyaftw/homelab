@@ -30,6 +30,7 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - |
+              apk add --no-cache gettext &&
               cp /config/original/config.toml /config/out/config.toml &&
               envsubst < /config/out/config.toml > /config/out/config.toml
       containers:
