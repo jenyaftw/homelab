@@ -29,6 +29,8 @@ spec:
         target:
           kind: Deployment
   values:
+    fullnameOverride: rabbitmq
+
     auth:
       username: jenya
       existingPasswordSecret: rabbitmq-secret
