@@ -1,12 +1,12 @@
-# apiVersion: v1
-# kind: Pod
-# metadata:
-#   name: waitle-waitlist-api
-#   namespace: apps
-# spec:
-#   containers:
-#     - name: name
-#       image: ghcr.io/jenyaftw/waitle-waitlist-api:latest
-#       imagePullPolicy: Always
-#   imagePullSecrets:
-#     - name: ghcr-jenyaftw
+apiVersion: v1
+kind: Pod
+metadata:
+  name: waitle-waitlist-api
+  namespace: apps
+spec:
+  containers:
+    - name: name
+      image: ghcr.io/jenyaftw/waitle-waitlist-api:latest
+      imagePullPolicy: Always
+  imagePullSecrets:
+    - name: ghcr-jenyaftw
