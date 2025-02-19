@@ -6,4 +6,3 @@ resources:
   - ../base/arc
   - ../base/jellyfin
   - ../base/jenkins
-  - ../base/waitle
