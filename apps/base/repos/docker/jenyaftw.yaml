@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: ghcr-docker-config
+    name: ghcr-jenyaftw
     namespace: apps
 data:
     .dockerconfigjson: ENC[AES256_GCM,data:lmZHRfmAhRdBiyO4wPicmq+2zI33DVCogS8h9LMYGErhsnKsNg8upmXz7AOrL/2y7QvSRgg/TCvYukyO2bX7O0Xd5oH6IN+mDT9LJolfgDZFsYyoPJu38/zxARkO7bZBem9+RCeuzwTcgFbwh03lX7pzFGoj2VEZ1FuT5sesSd0aFYr5dpFYBQ==,iv:pDBI5S1kQrzMfUKxaXgvVCXoIyB+VDvTYXi3EAuLBCY=,tag:8JgGJIGY8GpU33Kn5L0n+w==,type:str]
@@ -14,13 +14,13 @@ sops:
     age:
         - recipient: age1h440ezlz0n2wf57mvdzfes8hglf7p543ryggjwgywlwlrwlmhczs4qtdzz
           enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1b3hoYTFOdERlNHg0dWNK
-            emV1QWVZclJ1K3ZNc3hkZ0poRnBpcW4wWmlnClc5UkFGUDkxNDl2UDZ6blZuemxw
-            ekZTd2lkVUxQUVg4c2pjSm1ReWZreEkKLS0tIGxtRnNtV0JaZlNBZU5qOVdRWXFM
-            NHhmL2RLbTYzNWdxZHdsbDNMZVhOSEUKEuvOX6HS2tnZq3gV3JEeMc7XZoaPgLFP
-            mdvMl6NveTD/bwG/869pCn9hoc1kj0Y22WP6YgEDTI6q1SKb0Q43EQ==
-            -----END AGE ENCRYPTED FILE-----
+              -----BEGIN AGE ENCRYPTED FILE-----
+              YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1b3hoYTFOdERlNHg0dWNK
+              emV1QWVZclJ1K3ZNc3hkZ0poRnBpcW4wWmlnClc5UkFGUDkxNDl2UDZ6blZuemxw
+              ekZTd2lkVUxQUVg4c2pjSm1ReWZreEkKLS0tIGxtRnNtV0JaZlNBZU5qOVdRWXFM
+              NHhmL2RLbTYzNWdxZHdsbDNMZVhOSEUKEuvOX6HS2tnZq3gV3JEeMc7XZoaPgLFP
+              mdvMl6NveTD/bwG/869pCn9hoc1kj0Y22WP6YgEDTI6q1SKb0Q43EQ==
+              -----END AGE ENCRYPTED FILE-----
     lastmodified: "2025-02-19T12:44:34Z"
     mac: ENC[AES256_GCM,data:yABaycT3Y4BLR4wFs1rRvTZaOVbzUcpG+rD/rzn/aRRh8mLJ363OTDAgDAVmM7+Vl8w0YvoOeQcGDNhDzKEuG4TJiUb5QAkg2xk78r2rkHDesm+o824arlNMmKxL1ebLgtzfHHyyOYP4n+rp6fTgZVOBL35oK3Y8gSflv8r7qYc=,iv:lSpzTloF/xq+oZKKbFqQIDa06vwfe0hie3I/iNPCmqU=,tag:+NmjfTpEO+GSajo8JoQ9vQ==,type:str]
     pgp: []
