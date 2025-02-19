@@ -31,7 +31,7 @@ spec:
   values:
     auth:
       username: jenya
-      password: ${rabbitPassword}
+      password: $rabbitPassword
 
     extraSecrets:
       load-definition:
