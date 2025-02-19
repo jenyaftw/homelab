@@ -6,3 +6,4 @@ resources:
   - gh-actions.yaml
   - jellyfin.yaml
   - jenkins.yaml
+  - runix.yaml
