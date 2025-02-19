@@ -16,9 +16,6 @@ spec:
       containers:
         - name: orchard-bot
           image: ghcr.io/jenyaftw/orchard-bot:latest
-          envFrom:
-            - secretRef:
-                name: orchard-bot-secret
           volumeMounts:
             - name: config-map
               mountPath: /config.toml
