@@ -31,6 +31,9 @@ spec:
   values:
     fullnameOverride: rabbitmq
 
+    service:
+      type: LoadBalancer
+
     auth:
       username: jenya
       existingPasswordSecret: rabbitmq-secret
