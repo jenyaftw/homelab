@@ -9,4 +9,4 @@ spec:
       image: ghcr.io/jenyaftw/waitle-waitlist-api:latest
       imagePullPolicy: Always
   imagePullSecrets:
-    - name: ghcr-jenyaftw-secret
+    - name: ghcr-docker-config
