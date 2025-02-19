@@ -2,36 +2,25 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: orchard-bot-config
-  namespace: apps
 data:
-  config.toml: |
-    [discord]
-    token = "${DISCORD_TOKEN}"
-
-    [db]
-    host = "postgres.infra.svc.cluster.local"
-    port = 5432
-    db = "orchard"
-    username = "postgres"
-    password = "${DB_PASSWORD}"
-
-    [ai]
-    key = "${AI_KEY}"
-    base_url = "https://openrouter.ai/api/v1/v1"
-    model = "google/gemini-2.0-flash-001"
-
-    [minecraft]
-    rcon_host = "192.168.0.25"
-    rcon_port = 25575
-    rcon_password = "${RCON_PASSWORD}"
-    smp_role = "1332496030935023649"
-
-    [amqp]
-    url = "amqp://guest:guest@rabbitmq.infra.svc.cluster.local:5672/"
-
-    [modules.apps]
-    app_log = "1332791738292637736"
-
-    [modules.chat]
-    chat_channel = "1336812976782704743"
-    linked_role = "1337185483620618291"
+  config.toml: ENC[AES256_GCM,data:D6+8e19HFuHp/Xfj6qfJskK9E3KTUtwZ6W0x5Jveh4b/PT0/QgVX91Kk/pd+Zfgn3mELsrrkGu7FMcWuJj1ROseCwWE1dmyDv1Osc6RC4XX/mfZRzYpWOb2FGIrWmSoyWnliBqxcM2JAT9sQRnOfHOV1DZ13E7i8o/NjziJEZxnig1Q7nyDJh14fFa7Hx/wrJ0OpcfKJQBS7t8gqqEj/AFP0wRfueBqHXLxSYMUWwA+RgXPiYPToLlVPpHCqvF7++9fkE/JbMwBDMfrzBezRK1uYVNFrjd4/uMCtNOjMNqdA7dhFNj+Y4HtricDqlqSaKUfyLJBjsq8kf8sLFfr2WZFULoHYikmGq1LT093Zn4EjE1Bo6wyyGfdoR86JZKwVzZiKfJ58eJn9xduJ1Xjt0/HCotfQY5Kjxn2PK+aApnJVRe+ymCx51moi5e2O1wysfQZpsaCNeK2InS7OpioKWlTXY0AxH2YEO7Q/CM9Vo9d1+Bt5zyw62C0JinAE6tUj3yZJ0FTGjyQw+19sVYKQMChwhKcpd7e9EwpuyObjPP0YujTQR35P2McOfWblavtYO15G2eVeweac9tHxM7aOTjEG/l6AmdW3E0nk0f/lRf7ozEFS82mGPnxKvbMjWovJf5J6rfadgZ1iJ4JiKZ4TwXvjSmR/uIK3+gy3GgOWd4No4N11zVfIrvMaXnFx7YG4z6ILaVQC3DhnRDjhOW6AbYxWy4mNWM9QL7ZP3VcDFunAT/xFZHI2iEKXssLdzUYt/MWoWKoWctTqZLcGhdnhu2OEgW2vo1LwnGQLaPG1g+0HAvAtRDzoliWKQKspCgToMw3BIEL/HdfsP/10jfsfzo5BPI/f29V+mhKZb6jSE2Yu+jpfuODpX1s6RS2B8vIQhSwe6qhOUV+MqbbJCRgazECBTJ+fu5dsrNGWsEagJQfeMXbIIkaqeT9rrntyfe3RmmDcKnZW6XR+baWv,iv:rB8CEFxyJ0IuagDs+unUk5dCOPdwYO2Wf7me0TUgzVE=,tag:o8Hk1vRwHejE5Dj3FxItTw==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1h440ezlz0n2wf57mvdzfes8hglf7p543ryggjwgywlwlrwlmhczs4qtdzz
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBLNUZOa1lMZXFWMlpGaVBR
+        QXdad2QxZjdCY0JRbnZNQ3BqRVQxWDFHYTNNCkdMeVk5VzQyNkI4eS9BaEtPRXhS
+        YWw3VjJ0V0MvN3JqQVpwaGc5cnVUeHcKLS0tIDBBZW8wWTdCRVlXVWUwS0tzc21s
+        ZkkrZWVZVXF1NTJPY05JYjBkU1Z3cUEKJapn8fg6858eNyCUzfwKkC80UuZ55/OG
+        6sp6CRayqTgzBm8Kj8I6/aWch29M4npTidYgGFQ5kE/IFfHVOPktQg==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-02-19T18:46:47Z"
+  mac: ENC[AES256_GCM,data:jssjj5LzLk3vutxqA7a5jUMPi+lTi9l2mke/GCCmD3ub3yqB1DLSCkOC2/0g9Tn73rJYD85tm8M9xZKnK78GIuSZF6ayNqtpnTllVebZX5fBrSEp+RCQQ4CWkKbm+gZjyWFR46pkUXS4rPURbIu5fk9MKA6iEa/odcJnA/qdBnY=,iv:2qg2ckK9Y8P9MBxKGntiRbPZmFhBiSccF43cAYPp4TU=,tag:qOEWzeQxru9uNJ3dcpTQhw==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.9.4
