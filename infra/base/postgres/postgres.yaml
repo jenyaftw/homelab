@@ -1,0 +1,36 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: postgres
+  namespace: infra
+spec:
+  interval: 10m
+  timeout: 5m
+  chart:
+    spec:
+      chart: postgresql
+      version: "14.16.0"
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  test:
+    enable: true
+  driftDetection:
+    mode: enabled
+    ignore:
+      - paths: ["/spec/replicas"]
+        target:
+          kind: Deployment
+  values:
+    fullnameOverride: postgres
+
+    auth:
+      username: postgres
+      existingSecret: postgres-secret
