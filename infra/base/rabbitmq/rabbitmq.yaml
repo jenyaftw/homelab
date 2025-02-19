@@ -31,7 +31,6 @@ spec:
   values:
     auth:
       username: jenya
-      updatePassword: true
       existingPasswordSecret: rabbitmq-secret
       existingSecretPasswordKey: rabbitPassword
 
