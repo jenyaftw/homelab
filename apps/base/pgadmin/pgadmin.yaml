@@ -30,7 +30,6 @@ spec:
         target:
           kind: Deployment
   values:
-    replicaCount: 10
     ingress:
       enabled: true
       ingressClassName: nginx
