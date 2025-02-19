@@ -30,6 +30,8 @@ spec:
         target:
           kind: Deployment
   values:
+    fullnameOverride: pgadmin
+
     ingress:
       enabled: true
       ingressClassName: nginx
