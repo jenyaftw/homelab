@@ -4,3 +4,4 @@ resources:
   - ingress-nginx.yaml
   - jetstack.yaml
   - twuni.yaml
+  - rabbitmq.yaml

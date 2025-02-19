@@ -1,0 +1,68 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: rabbitmq
+  namespace: infra
+spec:
+  interval: 10m
+  timeout: 5m
+  chart:
+    spec:
+      chart: rabbitmq
+      version: "4.0.6"
+      sourceRef:
+        kind: HelmRepository
+        name: rabbitmq
+      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  test:
+    enable: true
+  driftDetection:
+    mode: enabled
+    ignore:
+      - paths: ["/spec/replicas"]
+        target:
+          kind: Deployment
+  values:
+    auth:
+      username: jenya
+      password: ${rabbitPassword}
+
+    extraSecrets:
+      load-definition:
+        load_definition.json: |
+          {
+            "users": [
+              {
+                "name": "{{ .Values.auth.username }}",
+                "password": "{{ .Values.auth.password }}",
+                "tags": "administrator"
+              }
+            ],
+            "vhosts": [
+              {
+                "name": "/"
+              }
+            ]
+          }
+
+    loadDefinition:
+      enabled: true
+      existingSecret: load-definition
+
+    extraConfiguration: |
+      load_definitions = /app/load_definition.json
+
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hostname: &host "rabbitmq.${BASE_DOMAIN}"
+      tls:
+        - secretName: ${BASE_DOMAIN}
+          hosts:
+            - *host
