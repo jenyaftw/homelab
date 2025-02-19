@@ -26,8 +26,7 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - |
-              envsubst < /config.toml > /config.toml
-              exec /orchard-bot
+              env
       imagePullSecrets:
         - name: ghcr-jenyaftw
       volumes:
