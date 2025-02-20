@@ -18,6 +18,13 @@ spec:
     controller:
       service:
         type: "LoadBalancer"
+        electionID: ingress-controller-leader
+        ingressClass: public-nginx # default: nginx
+        ingressClassResource:
+          name: public-nginx # default: nginx
+          enabled: true
+          default: false
+          controllerValue: "k8s.io/internal-ingress-nginx"
       allowSnippetAnnotations: true
     admissionWebhooks:
       enabled: false
@@ -41,7 +48,7 @@ spec:
   values:
     controller:
       service:
-        electionID: ingress-controller-leader
+        electionID: public-ingress-controller-leader
         ingressClass: public-nginx # default: nginx
         ingressClassResource:
           name: public-nginx # default: nginx
