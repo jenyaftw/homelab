@@ -32,7 +32,7 @@ spec:
   values:
     ingress:
       enabled: true
-      className: nginx
+      className: nginx-public
       hosts:
         - host: &host "jellyfin.${BASE_DOMAIN}"
           paths:
