@@ -14,7 +14,7 @@ spec:
       labels:
         app: external-dns-pihole
     spec:
-      serviceAccountName: external-dns-pihole
+      serviceAccountName: external-dns
       containers:
         - name: external-dns-pihole
           image: registry.k8s.io/external-dns/external-dns:v0.15.1
@@ -56,7 +56,7 @@ spec:
       labels:
         app: external-dns-cf
     spec:
-      serviceAccountName: external-dns-cf
+      serviceAccountName: external-dns
       containers:
         - name: external-dns-cf
           image: registry.k8s.io/external-dns/external-dns:v0.15.1
