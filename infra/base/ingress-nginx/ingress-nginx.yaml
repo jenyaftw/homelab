@@ -54,7 +54,7 @@ spec:
           name: public-nginx # default: nginx
           enabled: true
           default: false
-          controllerValue: "k8s.io/internal-ingress-nginx"
+          controllerValue: "k8s.io/public-ingress-nginx"
         annotations:
           tailscale.com/expose: "true"
       allowSnippetAnnotations: true
