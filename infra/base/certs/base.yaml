@@ -13,3 +13,19 @@ spec:
   dnsNames:
     - "${BASE_DOMAIN}"
     - *commonName
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ${BASE_DOMAIN}-public
+  namespace: infra
+spec:
+  secretName: ${BASE_DOMAIN}
+  issuerRef:
+    name: letsencrypt-dev-wcard
+    kind: ClusterIssuer
+    group: cert-manager.io
+  commonName: &commonName "*.${BASE_DOMAIN}"
+  dnsNames:
+    - "${BASE_DOMAIN}"
+    - *commonName
