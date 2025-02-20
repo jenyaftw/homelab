@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: b.${BASE_DOMAIN}
+  namespace: apps
+spec:
+  secretName: ${BASE_DOMAIN}
+  issuerRef:
+    name: letsencrypt-dev-wcard
+    kind: ClusterIssuer
+    group: cert-manager.io
+  commonName: &commonName "*.b.${BASE_DOMAIN}"
+  dnsNames:
+    - "b.${BASE_DOMAIN}"
+    - *commonName

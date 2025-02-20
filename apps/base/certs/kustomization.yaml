@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - base.yaml
   - waitle.yaml
+  - bluesky.yaml
