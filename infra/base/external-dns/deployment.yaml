@@ -69,5 +69,6 @@ spec:
             - --source=ingress # ingress is also possible
             - --provider=cloudflare
             - --cloudflare-proxied # (optional) enable the proxy feature of Cloudflare (DDOS protection, CDN...)
+            - --exclude-target-net=192.0.0.0/8
       securityContext:
         fsGroup: 65534
