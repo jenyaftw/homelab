@@ -43,6 +43,9 @@ spec:
           hosts:
             - *host
 
+      annotations:
+        external-dns.alpha.kubernetes.io/cloudflare-target: "${ORACLE_IP}"
+
     persistence:
       media:
         existingClaim: jellyfin-media-pvc
