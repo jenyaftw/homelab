@@ -40,7 +40,6 @@ spec:
       interval: 12h
   values:
     controller:
-      type: "ClusterIP"
       electionID: public-ingress-controller-leader
       ingressClass: public-nginx # default: nginx
       ingressClassResource:
@@ -49,6 +48,7 @@ spec:
         default: false
         controllerValue: "k8s.io/public-ingress-nginx"
       service:
+        type: "ClusterIP"
         annotations:
           tailscale.com/expose: "true"
       allowSnippetAnnotations: true
