@@ -44,7 +44,7 @@ spec:
             - *host
 
       annotations:
-        external-dns.alpha.kubernetes.io/target: "${ORACLE_IP}"
+        external-dns.alpha.kubernetes.io/cloudflare-target: "${ORACLE_IP}"
 
     persistence:
       media:
