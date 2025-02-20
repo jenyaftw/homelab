@@ -32,7 +32,7 @@ spec:
   values:
     ingress:
       enabled: true
-      className: nginx
+      className: public-nginx
       hosts:
         - host: &host "jellyfin.${BASE_DOMAIN}"
           paths:
@@ -43,8 +43,8 @@ spec:
           hosts:
             - *host
 
-      # annotations:
-      #   external-dns.alpha.kubernetes.io/target: "${ORACLE_IP}"
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "${ORACLE_IP}"
 
     persistence:
       media:
