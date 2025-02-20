@@ -20,7 +20,7 @@ metadata:
   name: ${BASE_DOMAIN}-public
   namespace: apps
 spec:
-  secretName: ${BASE_DOMAIN}
+  secretName: ${BASE_DOMAIN}-public
   issuerRef:
     name: letsencrypt-dev-wcard
     kind: ClusterIssuer
