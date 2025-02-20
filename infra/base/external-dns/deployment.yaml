@@ -60,9 +60,12 @@ spec:
       containers:
         - name: external-dns-cf
           image: registry.k8s.io/external-dns/external-dns:v0.15.1
-          envFrom:
-            - secretRef:
-                name: cf-secret
+          env:
+            - name: CF_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-secret
+                  key: cloudflareKey
           args:
             - --source=service # ingress is also possible
             - --provider=cloudflare
