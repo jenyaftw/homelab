@@ -18,6 +18,8 @@ spec:
     controller:
       service:
         type: "LoadBalancer"
+        annotations:
+          tailscale.com/expose: "true"
       allowSnippetAnnotations: true
     admissionWebhooks:
       enabled: false
