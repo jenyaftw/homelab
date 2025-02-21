@@ -48,4 +48,5 @@ spec:
 
     persistence:
       media:
-        existingClaim: jellyfin-media-pvc
+        existingClaim: data-pvc
+        subPath: /media

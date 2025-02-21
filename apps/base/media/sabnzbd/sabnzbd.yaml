@@ -44,8 +44,8 @@ spec:
 
       downloads:
         enabled: true
-        existingClaim: sabnzbd-downloads-pvc
-        subPath: usenet
+        existingClaim: data-pvc
+        subPath: /usenet
 
     ingress:
       main:
