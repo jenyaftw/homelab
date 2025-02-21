@@ -42,6 +42,11 @@ spec:
       config:
         enabled: true
 
+      downloads:
+        enabled: true
+        existingClaim: sabnzbd-downloads-pvc
+        subPath: usenet
+
     ingress:
       main:
         enabled: true

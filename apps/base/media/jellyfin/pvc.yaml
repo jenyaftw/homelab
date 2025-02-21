@@ -1,21 +1,29 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: jenkins-pv
+  name: jellyfin-media-pv
+  namespace: apps
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 4Ti
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/data/media"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jellyfin-media-pvc
   namespace: apps
 spec:
-  storageClassName: jenkins-pv
+  storageClassName: manual
   accessModes:
-    - ReadWriteOnce
-  capacity:
-    storage: 20Gi
-  persistentVolumeReclaimPolicy: Retain
-  hostPath:
-    path: /data/jenkins/
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: jenkins-pv
-provisioner: kubernetes.io/no-provisioner
-volumeBindingMode: WaitForFirstConsumer
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 4Ti
+  volumeName: jellyfin-media-pv
