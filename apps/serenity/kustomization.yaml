@@ -4,7 +4,7 @@ resources:
   - ../base
   # - ../base/podinfo
   - ../base/arc
-  - ../base/jellyfin
+  - ../base/media
   - ../base/jenkins
   - ../base/pgadmin
   - ../base/orchard-bot
