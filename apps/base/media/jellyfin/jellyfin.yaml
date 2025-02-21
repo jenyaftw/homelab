@@ -49,4 +49,4 @@ spec:
     persistence:
       media:
         existingClaim: data-pvc
-        subPath: /media
+        subPath: media

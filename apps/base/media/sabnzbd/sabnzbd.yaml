@@ -45,7 +45,7 @@ spec:
       downloads:
         enabled: true
         existingClaim: data-pvc
-        subPath: /usenet
+        subPath: usenet
 
     ingress:
       main:
