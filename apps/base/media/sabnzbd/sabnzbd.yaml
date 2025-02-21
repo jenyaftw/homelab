@@ -32,17 +32,22 @@ spec:
   values:
     env:
       TZ: Europe/Kyiv
+      HOST_WHITELIST_ENTRIES: &host "sab.${BASE_DOMAIN}"
 
     image:
       repository: lscr.io/linuxserver/sabnzbd
       tag: version-4.4.1
+
+    persistence:
+      config:
+        enabled: true
 
     ingress:
       main:
         enabled: true
         ingressClassName: nginx
         hosts:
-          - host: &host "sab.${BASE_DOMAIN}"
+          - host: *host
             paths:
               - path: /
                 pathType: Prefix
