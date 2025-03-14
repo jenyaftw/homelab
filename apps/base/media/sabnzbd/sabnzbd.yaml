@@ -55,7 +55,10 @@ spec:
           - host: *host
             paths:
               - path: /
-                pathType: Prefix
+                pathType: Prefi
+                service:
+                  identifier: main
+                  port: http
         tls:
           - secretName: ${BASE_DOMAIN}
             hosts:
