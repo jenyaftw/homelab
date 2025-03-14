@@ -40,9 +40,6 @@ spec:
           SABNZBD__HOST_WHITELIST_ENTRIES: &host sab.${BASE_DOMAIN}
 
     persistence:
-      config:
-        enabled: true
-
       downloads:
         enabled: true
         existingClaim: data-pvc
