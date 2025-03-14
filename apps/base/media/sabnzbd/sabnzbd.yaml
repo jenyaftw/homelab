@@ -73,6 +73,14 @@ spec:
           http:
             port: *port
 
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        globalMounts:
+          - path: /config
+
     ingress:
       main:
         enabled: true
