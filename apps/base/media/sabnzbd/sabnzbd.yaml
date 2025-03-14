@@ -32,7 +32,7 @@ spec:
   values:
     env:
       TZ: Europe/Kyiv
-      HOST_WHITELIST_ENTRIES: &host "sab.${BASE_DOMAIN}"
+      HOST_WHITELIST_ENTRIES: &host sab.${BASE_DOMAIN}
 
     image:
       repository: lscr.io/linuxserver/sabnzbd
