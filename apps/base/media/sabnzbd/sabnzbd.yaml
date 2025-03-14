@@ -36,6 +36,7 @@ spec:
           repository: ghcr.io/onedr0p/sabnzbd
           tag: 4.4.1@sha256:b7380cd5a93a0a232c5ce25803531b1575453953e99de4e6b8a1398e73442e5b
         env:
+          SABNZBD__PORT: &port 80
           SABNZBD__HOST_WHITELIST_ENTRIES: &host sab.${BASE_DOMAIN}
 
     persistence:
@@ -47,6 +48,13 @@ spec:
         existingClaim: data-pvc
         subPath: usenet
 
+    service:
+      app:
+        controller: sabnzbd
+        ports:
+          http:
+            port: *port
+
     ingress:
       main:
         enabled: true
@@ -55,9 +63,9 @@ spec:
           - host: *host
             paths:
               - path: /
-                pathType: Prefi
+                pathType: Prefix
                 service:
-                  identifier: main
+                  identifier: app
                   port: http
         tls:
           - secretName: ${BASE_DOMAIN}
