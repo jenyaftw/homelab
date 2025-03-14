@@ -1,15 +1,9 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: OCIRepository
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
 metadata:
-  name: app-template
+  name: bjw-s
   namespace: apps
 spec:
-  interval: 1h
-  layerSelector:
-    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
-    operation: copy
-  ref:
-    tag: 3.7.3
-  url: oci://ghcr.io/bjw-s/helm/app-template
-  verify:
-    provider: cosign
+  type: oci
+  interval: 5m
+  url: oci://ghcr.io/bjw-s/helm
