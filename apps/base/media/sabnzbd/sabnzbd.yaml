@@ -39,15 +39,6 @@ spec:
           SABNZBD__PORT: &port 80
           SABNZBD__HOST_WHITELIST_ENTRIES: &host sab.${BASE_DOMAIN}
 
-    persistence:
-      config:
-        existingClaim: sabnzbd
-
-      downloads:
-        enabled: true
-        existingClaim: data-pvc
-        subPath: usenet
-
     service:
       app:
         controller: sabnzbd
