@@ -42,7 +42,7 @@ spec:
               SABNZBD__HOST_WHITELIST_ENTRIES: &host sab.${BASE_DOMAIN}
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
+              readOnlyRootFilesystem: false
               capabilities: { drop: ["ALL"] }
             probes:
               liveness: &probes
