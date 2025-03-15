@@ -81,6 +81,11 @@ spec:
         globalMounts:
           - path: /config
 
+      media:
+        existingClaim: data-pvc
+        globalMounts:
+          - path: /data
+
     ingress:
       main:
         enabled: true
