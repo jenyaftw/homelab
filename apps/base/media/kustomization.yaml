@@ -6,3 +6,4 @@ resources:
   - sabnzbd/
   - radarr/
   - sonarr/
+  - prowlarr/
