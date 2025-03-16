@@ -4,6 +4,6 @@ resources:
   - pvc.yaml
   - jellyfin/
   - sabnzbd/
-  - radarr/
-  - sonarr/
-  - prowlarr/
+#  - radarr/
+#  - sonarr/
+#  - prowlarr/
