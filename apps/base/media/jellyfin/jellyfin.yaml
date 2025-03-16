@@ -46,6 +46,21 @@ spec:
       annotations:
         external-dns.alpha.kubernetes.io/target: "100.109.184.67"
 
+    podSecurityContext:
+      fsGroup: 993
+
+    securityContext:
+      privileged: true
+
+    volumes:
+      - name: gpu
+        hostPath:
+          path: /dev/dri/renderD128
+
+    volumeMounts:
+      - name: gpu
+        mountPath: /dev/dri/renderD128
+
     persistence:
       media:
         existingClaim: data-pvc
