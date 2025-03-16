@@ -41,8 +41,9 @@ spec:
               TZ: Europe/Kyiv
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              runAsUser: 1000
+              runAsGroup: 1000
+              fsGroup: 1000
             probes:
               liveness:
                 enabled: true
