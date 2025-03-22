@@ -8,3 +8,4 @@ resources:
   - ../base/jenkins
   - ../base/pgadmin
   - ../base/orchard-bot
+  - ../base/home-assistant
