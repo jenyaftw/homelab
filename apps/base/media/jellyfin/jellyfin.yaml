@@ -119,6 +119,12 @@ spec:
       transcode:
         type: emptyDir
 
+      dri:
+        type: hostPath
+        hostPath: /dev/dri
+        globalMounts:
+          - path: /dev/dri
+
       cache:
         enabled: true
         type: emptyDir
