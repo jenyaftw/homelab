@@ -55,10 +55,11 @@ spec:
         mountPath: /dev/dri/renderD128
 
     podSecurityContext:
-      fsGroup: 993
+      fsGroup: 104
 
     securityContext:
       privileged: true
+      fsGroup: 104
 
     persistence:
       media:
