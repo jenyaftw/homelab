@@ -42,6 +42,10 @@ spec:
                 memory: 1000Mi
               limits:
                 memory: 4000Mi
+            securityContext:
+              allowPrivilegeEscalation: true
+              capabilities:
+                add: ["SYS_RAWIO"]
             probes:
               liveness: &probe
                 enabled: true
@@ -74,9 +78,6 @@ spec:
         fsGroup: 1000
         runAsNonRoot: true
         fsGroupChangePolicy: OnRootMismatch
-        allowPrivilegeEscalation: true
-        capabilities:
-          add: ["SYS_RAWIO"]
         supplementalGroups:
           - 44
           - 104
