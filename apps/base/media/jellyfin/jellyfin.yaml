@@ -46,6 +46,10 @@ spec:
 #      annotations:
 #         external-dns.alpha.kubernetes.io/target: "100.109.184.67"
 
+    volumes:
+      - name: gpu
+        mountPath: /dev/dri/renderD128
+
     volumeMounts:
       - name: gpu
         mountPath: /dev/dri/renderD128
