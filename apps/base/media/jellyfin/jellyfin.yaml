@@ -42,10 +42,6 @@ spec:
                 memory: 1000Mi
               limits:
                 memory: 4000Mi
-            securityContext:
-              allowPrivilegeEscalation: true
-              capabilities:
-                add: ["SYS_RAWIO"]
             probes:
               liveness: &probe
                 enabled: true
