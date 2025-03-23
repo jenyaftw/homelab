@@ -41,7 +41,6 @@ spec:
                 cpu: 100m
                 memory: 1000Mi
               limits:
-                amd.com/gpu: 1
                 memory: 4000Mi
             probes:
               liveness: &probe
