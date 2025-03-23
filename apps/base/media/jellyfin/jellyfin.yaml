@@ -42,6 +42,8 @@ spec:
                 memory: 1000Mi
               limits:
                 memory: 4000Mi
+            securityContext:
+              privileged: true
             probes:
               liveness: &probe
                 enabled: true
