@@ -74,6 +74,9 @@ spec:
         fsGroup: 1000
         runAsNonRoot: true
         fsGroupChangePolicy: OnRootMismatch
+        allowPrivilegeEscalation: true
+        capabilities:
+          add: ["SYS_RAWIO"]
         supplementalGroups:
           - 44
           - 104
