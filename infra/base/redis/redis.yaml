@@ -21,12 +21,15 @@ spec:
     remediation:
       retries: 5
   values:
-    global:
-      imageRegistry: public.ecr.aws
-      storageClass: ceph-block
     auth:
       enabled: false
       sentinel: false
+    master:
+      persistence:
+        enabled: false
+    replica:
+      persistence:
+        enabled: false
     sentinel:
       enabled: true
       masterSet: redis-master
@@ -34,4 +37,6 @@ spec:
       startupProbe:
         failureThreshold: 2
     metrics:
-      enabled: false
+      enabled: true
+      serviceMonitor:
+        enabled: true
