@@ -43,7 +43,7 @@ spec:
                 cpu: 10m
               limits:
                 memory: 2Gi
-                devic.es/zigbee: 1
+                squat.ai/zigbee: 1
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
