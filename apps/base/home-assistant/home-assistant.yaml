@@ -35,9 +35,8 @@ spec:
               HASS_HTTP_TRUSTED_PROXY_1: 10.42.0.0/16
               HOME_ASSISTANT_EXTERNAL_URL: https://home.jenya.lol
             securityContext:
-              privileged: true
-              #              allowPrivilegeEscalation: false
-              #              readOnlyRootFilesystem: true
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
@@ -52,6 +51,8 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups:
+          - 20
     service:
       app:
         controller: *app
