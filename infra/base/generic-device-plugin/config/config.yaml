@@ -1,0 +1,12 @@
+---
+devices:
+  - name: tun
+    groups:
+      - count: 1000
+        paths:
+          - path: /dev/net/tun
+  - name: zigbee
+    groups:
+      - count: 10
+        paths:
+          - path: /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_0019cd35e549ef119897d58cff00cc63-if00-port0
