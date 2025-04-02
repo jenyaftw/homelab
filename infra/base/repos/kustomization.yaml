@@ -6,3 +6,4 @@ resources:
   - twuni.yaml
   - bitnami.yaml
   - tailscale.yaml
+  - bjw-s.yaml
