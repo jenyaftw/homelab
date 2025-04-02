@@ -55,6 +55,7 @@ spec:
       config:
         type: configMap
         name: generic-device-plugin-config
+        namespace: infra
         globalMounts:
           - path: /config/config.yaml
             subPath: config.yaml
