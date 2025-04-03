@@ -4,6 +4,7 @@ metadata:
   name: cloudflared-tunnel
   annotations:
     external-dns.alpha.kubernetes.io/target: external.jenya.lol
+    external-dns.alpha.kubernetes.io/external: 'true'
 spec:
   endpoints:
     - dnsName: external.jenya.lol
