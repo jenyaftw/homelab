@@ -1,0 +1,8 @@
+originRequest:
+  originServerName: external.jenya.lol
+ingress:
+  - hostname: "jenya.lol"
+    service: &svc https://ingress-nginx-public-controller.infra.svc.cluster.local
+  - hostname: "*.jenya.lol"
+    service: *svc
+  - service: http_status:404
