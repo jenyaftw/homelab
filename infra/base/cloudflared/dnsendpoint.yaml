@@ -9,4 +9,4 @@ spec:
   endpoints:
     - dnsName: external.jenya.lol
       recordType: CNAME
-      targets: ["${CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]
+      targets: ["cfargotunnel.com"]
