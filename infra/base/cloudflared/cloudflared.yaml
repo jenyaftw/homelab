@@ -39,7 +39,7 @@ spec:
               #            envFrom:
               #              - secretRef:
               #                  name: cloudflare-tunnel-secret
-            args: ["tunnel", "run"]
+            args: ["tunnel", "--config", "/etc/cloudflared/config/config.yaml", "run"]
             probes:
               liveness: &probes
                 enabled: true
