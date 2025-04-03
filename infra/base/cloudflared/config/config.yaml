@@ -2,6 +2,8 @@ credentials-file: /etc/cloudflared/creds/credentials.json
 
 originRequest:
   originServerName: external.jenya.lol
+  http2Origin: true
+  noTLSVerify: true
 
 ingress:
   - hostname: "jenya.lol"
