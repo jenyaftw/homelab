@@ -34,7 +34,6 @@ spec:
     policy: sync
     domainFilters: ["jenya.lol"]
     extraArgs:
-      - --cloudflare-proxied
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
       - --annotation-filter=external-dns.alpha.kubernetes.io/external=true
