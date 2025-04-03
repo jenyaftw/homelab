@@ -1,7 +1,5 @@
 credentials-file: /etc/cloudflared/creds/credentials.json
 
-protocol: http2
-
 originRequest:
   originServerName: external.jenya.lol
 
