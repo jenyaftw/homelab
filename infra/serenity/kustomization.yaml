@@ -6,6 +6,7 @@ resources:
   - ../base/ingress-nginx
   - ../base/cert-manager
   - ../base/external-dns
+  - ../base/cloudflared
   - ../base/rabbitmq
   - ../base/postgres
   - ../base/redis
