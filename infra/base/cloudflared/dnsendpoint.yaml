@@ -10,9 +10,3 @@ spec:
     - dnsName: external.jenya.lol
       recordType: CNAME
       targets: ["${CLOUDFLARE_TUNNEL_ID}.cfargotunnel.com"]
-    - dnsName: b.jenya.lol
-      recordType: CNAME
-      targets: ["external.jenya.lol"]
-    - dnsName: *.b.jenya.lol
-      recordType: CNAME
-      targets: ["external.jenya.lol"]
