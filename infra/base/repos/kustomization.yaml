@@ -7,3 +7,4 @@ resources:
   - bitnami.yaml
   - tailscale.yaml
   - bjw-s.yaml
+  - external-dns.yaml
