@@ -1,5 +1,8 @@
+credentials-file: /etc/cloudflared/creds/credentials.json
+
 originRequest:
   originServerName: external.jenya.lol
+
 ingress:
   - hostname: "jenya.lol"
     service: &svc https://ingress-nginx-public-controller.infra.svc.cluster.local
