@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: infra
 resources:
   - dnsendpoint.yaml
-  #  - secret.yaml
+  - secret.yaml
   - cloudflared.yaml
 configMapGenerator:
   - name: cloudflared-configmap
