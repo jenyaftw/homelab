@@ -77,7 +77,6 @@ spec:
       config-file:
         type: configMap
         name: cloudflared-configmap
-        namespace: infra
         globalMounts:
           - path: /etc/cloudflared/config.yaml
             subPath: config.yaml
