@@ -38,8 +38,6 @@ spec:
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
       - --annotation-filter=external-dns.alpha.kubernetes.io/external=true
-    serviceMonitor:
-      enabled: true
     resources:
       requests:
         cpu: 25m
