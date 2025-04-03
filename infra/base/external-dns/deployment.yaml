@@ -71,5 +71,7 @@ spec:
             - --provider=cloudflare
             # - --cloudflare-proxied # (optional) enable the proxy feature of Cloudflare (DDOS protection, CDN...)
             - --exclude-target-net=192.0.0.0/8
+            - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+            - --crd-source-kind=DNSEndpoint
       securityContext:
         fsGroup: 65534
