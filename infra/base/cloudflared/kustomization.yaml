@@ -4,7 +4,7 @@ namespace: infra
 resources:
   - dnsendpoint.yaml
   #  - secret.yaml
-  #  - cloudflared.yaml
+  - cloudflared.yaml
 configMapGenerator:
   - name: cloudflared-configmap
     files:
