@@ -5,4 +5,4 @@ resources:
   - service-account.yaml
   - cluster-role.yaml
   - deployment.yaml
-  #  - external-dns-public.yaml
+  - external-dns-public.yaml
