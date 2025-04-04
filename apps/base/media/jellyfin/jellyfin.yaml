@@ -93,7 +93,7 @@ spec:
         enabled: true
         annotations:
           external-dns.alpha.kubernetes.io/target: "external.${BASE_DOMAIN}"
-          external-dns.alpha.kubernetes.io/external: "1"
+          external-dns.alpha.kubernetes.io/external: "true"
         className: public-nginx
         hosts:
           - host: &host jelly.${BASE_DOMAIN}
