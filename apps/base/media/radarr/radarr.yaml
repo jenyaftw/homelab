@@ -81,10 +81,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: public-nginx
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${BASE_DOMAIN}"
-          external-dns.alpha.kubernetes.io/external: "true"
+        className: nginx
         hosts:
           - host: &host radarr.${BASE_DOMAIN}
             paths:
