@@ -41,8 +41,8 @@ spec:
               TZ: Europe/Kyiv
               JELLYFIN_HOST: http://jellyfin.apps.svc.cluster.local:8096
               JELLYFIN_USERNAME: vrchat
-              AUDIO_BITRATE: 128000
-              VIDEO_BITRATE: 3000000
+              AUDIO_BITRATE: '128000'
+              VIDEO_BITRATE: '3000000'
               MAX_AUDIO_CHANNELS: 2
               MAX_HEIGHT: 1080
               MAX_WIDTH: 1920
