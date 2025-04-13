@@ -46,6 +46,11 @@ spec:
               MAX_AUDIO_CHANNELS: 2
               MAX_HEIGHT: 1080
               MAX_WIDTH: 1920
+              JELLYFIN_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: vrchat-jellyfin-secret
+                    key: JELLYFIN_PASSWORD
             securityContext:
               allowPrivilegeEscalation: false
               runAsUser: 1000
