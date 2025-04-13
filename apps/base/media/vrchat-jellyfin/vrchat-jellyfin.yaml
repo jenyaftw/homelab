@@ -36,7 +36,7 @@ spec:
           main:
             image:
               repository: ghcr.io/gurrrrrrett3/vrchat-jellyfin
-              tag: sha256:e28915686e30439bcd8356cc191b2d93b4d3f2d52d3170a4a62b52b9617377f8
+              tag: master
             env:
               TZ: Europe/Kyiv
               JELLYFIN_HOST: jellyfin.apps.svc.cluster.local
