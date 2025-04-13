@@ -1,0 +1,92 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: vrchat-jellyfin
+  namespace: apps
+spec:
+  interval: 10m
+  timeout: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: "3.6.1"
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+      interval: 5m
+  releaseName: radarr
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  test:
+    enable: true
+  driftDetection:
+    mode: enabled
+    ignore:
+      - paths: ["/spec/replicas"]
+        target:
+          kind: Deployment
+  values:
+    controllers:
+      vrchat-jellyfin:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/gurrrrrrett3/vrchat-jellyfin
+              tag: sha256:e28915686e30439bcd8356cc191b2d93b4d3f2d52d3170a4a62b52b9617377f8
+            env:
+              TZ: Europe/Kyiv
+              JELLYFIN_HOST: jellyfin.apps.svc.cluster.local
+              JELLYFIN_USERNAME: vrchat
+              AUDIO_BITRATE: 128000
+              VIDEO_BITRATE: 3000000
+              MAX_AUDIO_CHANNELS: 2
+              MAX_HEIGHT: 1080
+              MAX_WIDTH: 1920
+            securityContext:
+              allowPrivilegeEscalation: false
+              runAsUser: 1000
+              runAsGroup: 1000
+              fsGroup: 1000
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: false
+            resources:
+              requests:
+                cpu: 300m
+                memory: 1Gi
+              limits:
+                memory: 4Gi
+
+    service:
+      app:
+        controller: vrchat-jellyfin
+        ports:
+          http:
+            port: &port 4000
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "external.${BASE_DOMAIN}"
+          external-dns.alpha.kubernetes.io/external: "true"
+        className: public-nginx
+        hosts:
+          - host: &host vrc-jelly.${BASE_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - secretName: ${BASE_DOMAIN}
+            hosts:
+              - *host
