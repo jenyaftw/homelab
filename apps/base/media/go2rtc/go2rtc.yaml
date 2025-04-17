@@ -80,7 +80,7 @@ spec:
 
     persistence:
       config:
-        name: go2rtc-config
+        name: go2rtc-configmap
         type: configMap
         advancedMounts:
           *app :
