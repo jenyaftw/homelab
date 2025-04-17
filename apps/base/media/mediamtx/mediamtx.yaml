@@ -75,6 +75,9 @@ spec:
           rtsp:
             port: 554
             nodePort: 30554
+          webrtc:
+            port: 80
+            nodePort: 80
 
     persistence:
       config:
