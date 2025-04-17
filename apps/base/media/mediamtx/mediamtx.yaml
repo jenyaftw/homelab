@@ -1,0 +1,98 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app mediamtx
+  namespace: apps
+spec:
+  interval: 10m
+  timeout: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: "3.6.1"
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+      interval: 5m
+  releaseName: *app
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  test:
+    enable: true
+  driftDetection:
+    mode: enabled
+    ignore:
+      - paths: ["/spec/replicas"]
+        target:
+          kind: Deployment
+  values:
+    controllers:
+      *app:
+        containers:
+          *app:
+            image:
+              repository: bluenviron/mediamtx
+              tag: "latest-ffmpeg"
+            env:
+              MTX_PROTOCOLS: "tcp"
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: false
+            resources:
+              requests:
+                cpu: 300m
+                memory: 1Gi
+              limits:
+                memory: 4Gi
+
+    service:
+      main:
+        controller: *app
+        ports:
+          webrtc:
+            primary: true
+            port: 80
+          rtsp:
+            port: 554
+          rtspudp:
+            port: 8000
+            protocol: UDP
+          webrtcudp:
+            port: 8189
+            protocol: UDP
+
+    persistence:
+      config:
+        name: mediamtx-config
+        type: configMap
+        advancedMounts:
+          *app :
+            *app :
+              - path: /mediamtx.yml
+                readOnly: true
+                subPath: mediamtx.yml
+
+    ingress:
+      main:
+        enabled: true
+        className: nginx
+        hosts:
+          - host: &host mtx.${BASE_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: main
+                  port: 80
+        tls:
+          - secretName: ${BASE_DOMAIN}
+            hosts:
+              - *host
