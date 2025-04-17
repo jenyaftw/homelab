@@ -62,6 +62,12 @@ spec:
         runAsGroup: 1000
 
     service:
+      rtsp:
+        controller: *app
+        type: LoadBalancer
+        ports:
+          rtsp:
+            port: 554
       main:
         controller: *app
         ports:
