@@ -7,5 +7,5 @@ resources:
   - radarr/
   - sonarr/
   - prowlarr/
-  - mediamtx/
+#  - mediamtx/
   - go2rtc/
