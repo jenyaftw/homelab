@@ -66,6 +66,8 @@ spec:
         controller: *app
         type: LoadBalancer
         ports:
+          http:
+            port: 80
           rtsp:
             port: 554
       main:
