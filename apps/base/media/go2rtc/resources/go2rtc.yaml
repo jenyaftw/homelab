@@ -1,6 +1,6 @@
 ---
-stream:
-  stream: {}
+streams:
+  jenya-obs:
 api:
   listen: :80
 rtsp:
