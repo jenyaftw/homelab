@@ -64,7 +64,6 @@ spec:
     service:
       main:
         controller: *app
-        type: LoadBalancer
         ports:
           http:
             primary: true
