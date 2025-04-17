@@ -94,6 +94,9 @@ spec:
       main:
         enabled: true
         className: nginx
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "14400"
+          nginx.ingress.kubernetes.io/proxy-send-timeout: "14400"
         hosts:
           - host: &host mtx.${BASE_DOMAIN}
             paths:
