@@ -4,6 +4,7 @@ kind: Kustomization
 #  - go2rtc.yaml
 configMapGenerator:
   - name: go2rtc-configmap
+    namespace: apps
     files:
       - go2rtc.yaml=./resources/go2rtc.yaml
 generatorOptions:
