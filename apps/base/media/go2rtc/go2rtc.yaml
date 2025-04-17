@@ -68,6 +68,7 @@ spec:
         ports:
           http:
             port: 80
+            nodePort: 30888
           rtsp:
             port: 554
       main:
