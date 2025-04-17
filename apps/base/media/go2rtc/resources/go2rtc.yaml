@@ -1,4 +1,6 @@
 ---
+stream:
+  stream: {}
 api:
   listen: :80
 rtsp:
