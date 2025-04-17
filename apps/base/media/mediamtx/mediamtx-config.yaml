@@ -78,6 +78,8 @@ data:
       ips: []
       # List of permissions.
       permissions:
+      - action: publish
+        path:
         # Available actions are: publish, read, playback, api, metrics, pprof.
       - action: read
         path:
