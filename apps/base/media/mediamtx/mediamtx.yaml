@@ -68,6 +68,13 @@ spec:
           webrtcudp:
             port: 8189
             protocol: UDP
+      rtsp:
+        controller: *app
+        type: NodePort
+        ports:
+          rtsp:
+            port: 554
+            nodePort: 30554
 
     persistence:
       config:
