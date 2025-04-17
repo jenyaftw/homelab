@@ -56,7 +56,7 @@ data:
     authInternalUsers:
     - user: stream
       # Password. Not used in case of 'any' user.
-      pass: ${mediamtx_password}
+      pass: stream
       # IPs or networks allowed to use this user. An empty list means any IP.
       ips: []
       # List of permissions.
