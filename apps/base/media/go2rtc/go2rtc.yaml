@@ -1,0 +1,107 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app go2rtc
+  namespace: apps
+spec:
+  interval: 10m
+  timeout: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: "3.6.1"
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+      interval: 5m
+  releaseName: *app
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  test:
+    enable: true
+  driftDetection:
+    mode: enabled
+    ignore:
+      - paths: ["/spec/replicas"]
+        target:
+          kind: Deployment
+  values:
+    controllers:
+      *app:
+        containers:
+          *app:
+            image:
+              repository: ghcr.io/alexxit/go2rtc
+              tag: 1.9.9@sha256:7d31dcb73633310e80497c431f4534c81ed55ec0708db3262bc56918e654bba5
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 300m
+                memory: 1Gi
+              limits:
+                memory: 4Gi
+
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+
+    service:
+      main:
+        controller: *app
+        type: LoadBalancer
+        ports:
+          http:
+            primary: true
+            port: 80
+          rtsp:
+            port: 554
+          webrtc-tcp:
+            port: 8555
+            protocol: TCP
+          webrtc-udp:
+            port: 8555
+            protocol: UDP
+
+    persistence:
+      config:
+        name: go2rtc-config
+        type: configMap
+        advancedMounts:
+          *app :
+            *app :
+              - path: /config/go2rtc.yaml
+                readOnly: true
+                subPath: go2rtc.yaml
+
+    ingress:
+      main:
+        enabled: true
+        className: nginx
+        hosts:
+          - host: &host go2rtc.${BASE_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: main
+                  port: 80
+        tls:
+          - secretName: ${BASE_DOMAIN}
+            hosts:
+              - *host
