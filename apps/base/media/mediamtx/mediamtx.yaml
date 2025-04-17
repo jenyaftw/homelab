@@ -77,7 +77,7 @@ spec:
             nodePort: 30554
           webrtc:
             port: 80
-            nodePort: 80
+            nodePort: 30888
 
     persistence:
       config:
