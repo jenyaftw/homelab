@@ -39,7 +39,7 @@ spec:
           service:
             name: amp-service
             port:
-              number: 8006
+              number: 8080
   tls:
   - hosts:
     - amp.jenya.lol
