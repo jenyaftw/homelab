@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: amp-service
+  namespace: infra
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+  clusterIP: None 
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: amp-service
+  namespace: infra
+subsets:
+- addresses:
+  - ip: 192.168.0.25
+  ports:
+  - port: 8080
+    protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: amp-ingress
+  namespace: infra
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: amp.jenya.lol
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: amp-service
+            port:
+              number: 8006
+  tls:
+  - hosts:
+    - amp.jenya.lol
+    secretName: amp.lol
