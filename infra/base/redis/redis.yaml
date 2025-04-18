@@ -26,12 +26,12 @@ spec:
       sentinel: false
     master:
       persistence:
-        enabled: false
+        enabled: true
     replica:
       persistence:
-        enabled: false
+        enabled: true
     sentinel:
-      enabled: true
+      enabled: false
       masterSet: redis-master
       getMasterTimeout: 10
       startupProbe:
