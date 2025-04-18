@@ -25,16 +25,8 @@ spec:
       enabled: false
       sentinel: false
     master:
+      count: 1
       persistence:
         enabled: true
-    replica:
-      persistence:
-        enabled: true
-    sentinel:
-      enabled: false
-      masterSet: redis-master
-      getMasterTimeout: 10
-      startupProbe:
-        failureThreshold: 2
     metrics:
       enabled: true
