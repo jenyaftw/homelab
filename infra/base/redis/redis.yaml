@@ -28,5 +28,7 @@ spec:
       count: 1
       persistence:
         enabled: true
+    replica:
+      replicaCount: 0
     metrics:
       enabled: true
