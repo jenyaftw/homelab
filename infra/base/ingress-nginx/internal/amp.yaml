@@ -43,4 +43,4 @@ spec:
   tls:
   - hosts:
     - amp.jenya.lol
-    secretName: amp.lol
+    secretName: jenya.lol
