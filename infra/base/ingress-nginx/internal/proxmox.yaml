@@ -17,6 +17,7 @@ metadata:
   name: proxmox-ingress
   namespace: infra
 spec:
+  ingressClassName: nginx
   rules:
   - host: proxmox.jenya.lol
     http:
