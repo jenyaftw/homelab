@@ -5,6 +5,7 @@ metadata:
   annotations:
     external-dns.alpha.kubernetes.io/target: pangolin.jenya.lol
     external-dns.alpha.kubernetes.io/external: 'true'
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
 spec:
   endpoints:
     - dnsName: pangolin
