@@ -1,0 +1,11 @@
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: vps-dns-record
+spec:
+  endpoints:
+  - dnsName: vps.jenya.lol
+    recordType: A
+    recordTTL: 300
+    targets:
+    - 202.61.206.227

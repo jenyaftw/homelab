@@ -6,3 +6,4 @@ resources:
   - cluster-role.yaml
   - deployment.yaml
   - external-dns-public.yaml
+  - records/
