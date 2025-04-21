@@ -1,11 +1,11 @@
-apiVersion: externaldns.k8s.io/v1alpha1
-kind: DNSEndpoint
+apiVersion: v1
+kind: ConfigMap
 metadata:
   name: vps-dns-record
-spec:
-  endpoints:
-  - dnsName: vps.jenya.lol
-    recordType: A
-    recordTTL: 300
-    targets:
-    - 202.61.206.227
+  namespace: infra
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: vps.jenya.lol
+    external-dns.alpha.kubernetes.io/target: 202.61.206.227
+    external-dns.alpha.kubernetes.io/ttl: "300"
+data:
+  info: "DNS record for vps.jenya.lol"
