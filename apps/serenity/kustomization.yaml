@@ -9,3 +9,4 @@ resources:
   - ../base/pgadmin
   - ../base/orchard-bot
   - ../base/home-assistant
+  - ../base/whoami
