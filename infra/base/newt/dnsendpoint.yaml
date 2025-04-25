@@ -1,13 +1,12 @@
 apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
-  name: pangolin
+  name: newt-dns
   annotations:
-    external-dns.alpha.kubernetes.io/target: pangolin.jenya.lol
+    external-dns.alpha.kubernetes.io/target: external.jenya.lol
     external-dns.alpha.kubernetes.io/external: 'true'
-    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
 spec:
   endpoints:
-    - dnsName: pangolin
+    - dnsName: external.jenya.lol
       recordType: A
       targets: ["${VPS_IP}"]
