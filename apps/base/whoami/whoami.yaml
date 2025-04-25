@@ -1,0 +1,80 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: whoami
+  namespace: apps
+spec:
+  interval: 10m
+  timeout: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: "3.6.1"
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+      interval: 5m
+  releaseName: whoami
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  test:
+    enable: true
+  driftDetection:
+    mode: enabled
+    ignore:
+      - paths: ["/spec/replicas"]
+        target:
+          kind: Deployment
+  values:
+    controllers:
+      whoami:
+        containers:
+          main:
+            image:
+              repository: registry.skysolutions.fi/docker.io/traefik/whoami
+              tag: v1.11.0
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: false
+            resources:
+              requests:
+                cpu: 10m
+                memory: 16Mi
+              limits:
+                cpu: 100m
+                memory: 32Mi
+
+    service:
+      app:
+        controller: whoami
+        ports:
+          http:
+            port: &port 80
+
+    ingress:
+      main:
+        enabled: true
+        className: public-nginx
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "external.${BASE_DOMAIN}"
+          external-dns.alpha.kubernetes.io/external: "true"
+        hosts:
+          - host: &host whoami.${BASE_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - secretName: ${BASE_DOMAIN}
+            hosts:
+              - *host
