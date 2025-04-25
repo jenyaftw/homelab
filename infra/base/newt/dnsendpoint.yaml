@@ -5,6 +5,7 @@ metadata:
   annotations:
     external-dns.alpha.kubernetes.io/target: external.jenya.lol
     external-dns.alpha.kubernetes.io/external: 'true'
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
 spec:
   endpoints:
     - dnsName: external.jenya.lol
