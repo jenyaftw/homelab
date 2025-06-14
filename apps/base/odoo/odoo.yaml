@@ -70,7 +70,9 @@ spec:
             - *host
     persistence:
       config:
-        existingClaim: odoo-config
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 1Gi
         globalMounts:
          - path: /var/lib/odoo
       etc-config-file:
@@ -80,6 +82,8 @@ spec:
           - path: /etc/odoo/odoo.conf
             subPath: odoo.conf
       extra-addons:
-        existingClaim: odoo-addons-v1
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 4Gi
         globalMounts:
           - path: /mnt/extra-addons
