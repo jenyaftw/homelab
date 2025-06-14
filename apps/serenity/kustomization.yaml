@@ -10,3 +10,4 @@ resources:
   - ../base/orchard-bot
   - ../base/home-assistant
   - ../base/whoami
+  - ../base/odoo
