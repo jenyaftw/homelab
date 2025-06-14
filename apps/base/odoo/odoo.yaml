@@ -56,7 +56,7 @@ spec:
         className: public-nginx
         annotations:
           external-dns.alpha.kubernetes.io/target: "external.${BASE_DOMAIN}"
-          external-dns.alpha.kubernetes.io/external: true
+          external-dns.alpha.kubernetes.io/external: "true"
         hosts:
           - host: &host "odoo.${BASE_DOMAIN}"
             paths:
