@@ -12,7 +12,7 @@ spec:
       version: "28.2.6"
       sourceRef:
         kind: HelmRepository
-        name: odoo
+        name: bitnami
         namespace: apps
       interval: 5m
   releaseName: odoo
