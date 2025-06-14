@@ -1,4 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - pvc-addons.yaml
+  - secret.yaml
   - odoo.yaml
+onfigMapGenerator:
+  - name: odoo-configmap
+    files:
+      - ./config/odoo.conf
+generatorOptions:
+  disableNameSuffixHash: true
