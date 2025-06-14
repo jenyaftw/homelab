@@ -4,7 +4,7 @@ resources:
   - pvc-addons.yaml
   - secret.yaml
   - odoo.yaml
-onfigMapGenerator:
+configMapGenerator:
   - name: odoo-configmap
     files:
       - ./config/odoo.conf
