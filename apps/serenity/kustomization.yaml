@@ -11,3 +11,4 @@ resources:
   - ../base/home-assistant
   - ../base/whoami
   - ../base/odoo
+  - ../base/changedetection
