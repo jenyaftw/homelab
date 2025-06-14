@@ -40,7 +40,10 @@ spec:
       
     ingress:
       enabled: true
-      ingressClassName: nginx
+      ingressClassName: public-nginx
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "external.${BASE_DOMAIN}"
+        external-dns.alpha.kubernetes.io/external: "true"
       hostname: &host "odoo.${BASE_DOMAIN}"
       tls: true
       extraTls:
