@@ -6,6 +6,7 @@ resources:
   - odoo.yaml
 configMapGenerator:
   - name: odoo-configmap
+    namespace: apps
     files:
       - ./config/odoo.conf
 generatorOptions:
