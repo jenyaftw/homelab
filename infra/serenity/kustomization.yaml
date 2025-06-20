@@ -9,6 +9,6 @@ resources:
 #  - ../base/cloudflared
   - ../base/rabbitmq
   - ../base/postgres
-  - ../base/redis
+#  - ../base/redis
   - ../base/generic-device-plugin
   - ../base/newt
