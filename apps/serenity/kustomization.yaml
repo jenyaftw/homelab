@@ -5,7 +5,6 @@ resources:
   # - ../base/podinfo
   - ../base/arc
   - ../base/media
-  - ../base/jenkins
   - ../base/pgadmin
   - ../base/orchard-bot
   - ../base/home-assistant
