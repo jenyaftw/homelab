@@ -45,7 +45,7 @@ spec:
               capabilities: { drop: ["ALL"] }
             
     service:
-      app:
+      technitium:
         controller: *app
         ports:
           http:
