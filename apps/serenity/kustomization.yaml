@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../base
   # - ../base/podinfo
+  - ../base/technitium
   - ../base/arc
   - ../base/media
   - ../base/pgadmin
