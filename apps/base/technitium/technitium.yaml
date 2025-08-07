@@ -50,15 +50,14 @@ spec:
         ports:
           http:
             port: 5380
-      ports:
-        dns-tcp:
-          enabled: true
-          port: 53
-          protocol: TCP
-        dns-udp:
-          enabled: true
-          port: 53
-          protocol: UDP
+          dns-tcp:
+            enabled: true
+            port: 53
+            protocol: TCP
+          dns-udp:
+            enabled: true
+            port: 53
+            protocol: UDP
 
     ingress:
       technitium:
