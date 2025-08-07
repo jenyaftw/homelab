@@ -53,14 +53,15 @@ spec:
       dns:
         type: LoadBalancer
         controller: *app
-        dns-tcp:
-          enabled: true
-          port: 53
-          protocol: TCP
-        dns-udp:
-          enabled: true
-          port: 53
-          protocol: UDP
+        ports:
+          dns-tcp:
+            enabled: true
+            port: 53
+            protocol: TCP
+          dns-udp:
+            enabled: true
+            port: 53
+            protocol: UDP
 
     ingress:
       technitium:
