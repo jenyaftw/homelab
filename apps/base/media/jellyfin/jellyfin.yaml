@@ -12,17 +12,14 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bjw-s
-      interval: 30s
-  maxHistory: 2
+      interval: 5m
   install:
     remediation:
-      retries: 3
+      retries: -1
   upgrade:
     cleanupOnFail: true
     remediation:
       retries: 3
-  uninstall:
-    keepHistory: false
   values:
     controllers:
       jellyfin:
@@ -41,7 +38,7 @@ spec:
                 cpu: 100m
                 memory: 1000Mi
               limits:
-                memory: 4000Mi
+                memory: 8Gi
             securityContext:
               privileged: true
             probes:
