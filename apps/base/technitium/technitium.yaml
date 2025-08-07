@@ -86,4 +86,4 @@ spec:
         accessMode: ReadWriteOnce
         size: 1Gi
         globalMounts:
-          - path: /config
+          - path: /etc/dns
