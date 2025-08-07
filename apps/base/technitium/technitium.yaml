@@ -50,14 +50,17 @@ spec:
         ports:
           http:
             port: 5380
-          dns-tcp:
-            enabled: true
-            port: 53
-            protocol: TCP
-          dns-udp:
-            enabled: true
-            port: 53
-            protocol: UDP
+      dns:
+        type: LoadBalancer
+        controller: *app
+        dns-tcp:
+          enabled: true
+          port: 53
+          protocol: TCP
+        dns-udp:
+          enabled: true
+          port: 53
+          protocol: UDP
 
     ingress:
       technitium:
