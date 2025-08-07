@@ -36,7 +36,7 @@ spec:
             name: pihole-secret
             key: EXTERNAL_DNS_RFC2136_TSIG_SECRET
     extraArgs:
-      - --rfc2136-host=technitium.apps.svc.cluster.local  # Technitium DNS IP
+      - --rfc2136-host=technitium-dns.apps.svc.cluster.local  # Technitium DNS IP
       - --rfc2136-port=53
       - --rfc2136-zone=${BASE_DOMAIN}       # DNS Zone
       - --rfc2136-tsig-secret-alg=hmac-sha256
