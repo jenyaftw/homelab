@@ -107,7 +107,7 @@ spec:
           - secretName: ${BASE_DOMAIN}
             hosts:
               - *host
-      internal:
+      app:
         enabled: true
         className: nginx
         hosts:
