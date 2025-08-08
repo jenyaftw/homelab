@@ -21,7 +21,10 @@ spec:
       paths:
       - path: /
         pathType: ImplementationSpecific
-    tls: []
+    tls:
+      - hosts:
+        - kubero.${BASE_DOMAIN}
+        secretName: ${BASE_DOMAIN}
   nameOverride: ""
   nodeSelector: {}
   podAnnotations: {}
