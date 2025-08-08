@@ -58,7 +58,7 @@ spec:
   tolerations: []
   kubero:
     debug: ""
-    namespace: kubero
+    namespace: infra
     context: inClusterContext
     webhook_url: https://kubero.example.com/api/repo/webhooks
     sessionKey: "randomString"
