@@ -154,7 +154,7 @@ spec:
       - speakyourcode-button-panel
       - snuids-trafficlights-panel
     serviceMonitor:
-      enabled: true
+      enabled: false
     ingress:
       enabled: true
       ingressClassName: nginx
