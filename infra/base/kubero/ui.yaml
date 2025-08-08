@@ -2,6 +2,7 @@ apiVersion: application.kubero.dev/v1alpha1
 kind: Kubero
 metadata:
   name: kubero
+  namespace: kubero
 spec:
   # Default values copied from <project_dir>/helm-charts/kubero/values.yaml
   affinity: {}
