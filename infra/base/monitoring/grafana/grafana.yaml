@@ -159,7 +159,7 @@ spec:
       enabled: true
       ingressClassName: nginx
       hosts:
-        - &host "grafana.${SECRET_DOMAIN}"
+        - &host "grafana.${BASE_DOMAIN}"
     persistence:
       enabled: false
     topologySpreadConstraints:
