@@ -1,0 +1,171 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app grafana
+  namespace: infra
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: grafana
+      version: 9.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: infra
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    replicas: 2
+    env:
+      GF_SECURITY_ANGULAR_SUPPORT_ENABLED: true
+      GF_PANELS_DISABLE_SANITIZE_HTML: true
+      GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
+      GF_EXPLORE_ENABLED: true
+      GF_SECURITY_COOKIE_SAMESITE: *app
+    grafana.ini:
+      analytics:
+        check_for_updates: false
+        check_for_plugin_updates: false
+        reporting_enabled: false
+      auth.basic:
+        enabled: false
+        disable_login_form: true
+      auth.anonymous:
+        enabled: true
+        org: Stuff
+        org_role: Editor
+    deploymentStrategy:
+      type: RollingUpdate
+    resources:
+      requests:
+        cpu: 23m
+        memory: 127M
+      limits:
+        memory: 219M
+    dashboardProviders:
+      dashboardproviders.yaml:
+        apiVersion: 1
+        providers:
+          - name: default
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/default
+          - name: ceph
+            orgId: 1
+            folder: Ceph
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/ceph
+          - name: cilium
+            orgId: 1
+            folder: Cilium
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/cilium
+          - name: data
+            orgId: 1
+            folder: Data
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/data
+          - name: flux
+            orgId: 1
+            folder: Flux
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/flux
+          - name: kubernetes
+            orgId: 1
+            folder: Kubernetes
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/kubernetes
+          - name: network
+            orgId: 1
+            folder: Network
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/network
+          - name: system
+            orgId: 1
+            folder: System
+            type: file
+            disableDeletion: false
+            editable: true
+            allowUiUpdates: true
+            options:
+              path: /var/lib/grafana/dashboards/system
+          - name: thanos
+            orgId: 1
+            folder: Thanos
+            type: file
+            disableDeletion: false
+            editable: true
+            allowUiUpdates: true
+            options:
+              path: /var/lib/grafana/dashboards/thanos
+    sidecar:
+      dashboards:
+        enabled: true
+        searchNamespace: ALL
+        labelValue: ""
+        label: grafana_dashboard
+        folderAnnotation: grafana_folder
+        provider:
+          disableDelete: true
+          foldersFromFilesStructure: true
+      datasources:
+        enabled: true
+        searchNamespace: ALL
+        labelValue: ""
+    plugins:
+      - grafana-piechart-panel
+      - grafana-polystat-panel
+      - grafana-worldmap-panel
+      - grafana-clock-panel
+      - grafana-singlestat-panel
+      - mxswat-separator-panel
+      - farski-blendstat-panel
+      - speakyourcode-button-panel
+      - snuids-trafficlights-panel
+    serviceMonitor:
+      enabled: true
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+        - &host "grafana.${SECRET_DOMAIN}"
+    persistence:
+      enabled: false
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: *app
