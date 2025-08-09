@@ -4,7 +4,7 @@ metadata:
   name: cluster-config
   namespace: flux-system
 data:
-  CLUSTER_IP: "192.168.0.40"
+  CLUSTER_IP: "10.0.10.10"
   ORACLE_IP: "130.61.108.140"
   PIHOLE_DOMAIN: "192.168.0.3"
   VPS_IP: "202.61.206.227"
