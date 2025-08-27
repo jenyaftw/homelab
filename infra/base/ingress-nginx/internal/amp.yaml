@@ -17,7 +17,7 @@ metadata:
   namespace: infra
 subsets:
 - addresses:
-  - ip: 192.168.0.25
+  - ip: 10.0.10.3
   ports:
   - port: 8080
     protocol: TCP
