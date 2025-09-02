@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - ../base
 #  - ../base/monitoring
-# - ../base/kubero
   - ../base/tailscale
   - ../base/ingress-nginx
   - ../base/cert-manager
