@@ -33,6 +33,8 @@ spec:
               JELLYFIN_FFmpeg__probesize: 50000000
               JELLYFIN_FFmpeg__analyzeduration: 50000000
               TZ: Europe/Kyiv
+              PUID: "1000"
+              PGID: "1000"
             resources:
               requests:
                 cpu: 100m
@@ -40,7 +42,7 @@ spec:
               limits:
                 memory: 8Gi
             securityContext:
-              privileged: true
+              allowPrivilegeEscalation: false
             probes:
               liveness: &probe
                 enabled: true
@@ -68,10 +70,7 @@ spec:
 
     defaultPodOptions:
       securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
         fsGroup: 1000
-        runAsNonRoot: true
         fsGroupChangePolicy: OnRootMismatch
         supplementalGroups:
           - 44
