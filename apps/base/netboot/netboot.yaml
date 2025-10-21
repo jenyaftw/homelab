@@ -42,6 +42,7 @@ spec:
         ports:
           tftp:
             port: 69
+            targetPort: 69
             protocol: UDP
 
     ingress:
