@@ -34,11 +34,15 @@ spec:
         ports:
           control:
             port: &port 3000
+          http:
+            port: 80
+      tftp:
+        controller: *app
+        type: LoadBalancer
+        ports:
           tftp:
             port: 69
             protocol: UDP
-          http:
-            port: 80
 
     ingress:
       internal:
