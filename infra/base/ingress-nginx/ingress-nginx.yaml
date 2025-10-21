@@ -19,8 +19,6 @@ spec:
       service:
         type: "LoadBalancer"
       allowSnippetAnnotations: true
-      ingressClassResource:
-        controllerValue: "k8s.io/internal-ingress-nginx"
     admissionWebhooks:
       enabled: false
 ---
