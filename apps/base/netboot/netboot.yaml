@@ -32,7 +32,7 @@ spec:
               allowPrivilegeEscalation: false
               capabilities: 
                 drop: ["ALL"]
-                add: ["SETGID", "SETUID", "NET_BIND_SERVICE"]
+                add: ["SETGID", "SETUID", "NET_BIND_SERVICE", "CHOWN"]
     service:
       app:
         controller: *app
