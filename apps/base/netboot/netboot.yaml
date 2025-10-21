@@ -30,7 +30,6 @@ spec:
               tag: 0.7.6-nbxyz4
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
     service:
       app:
@@ -73,4 +72,23 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /tmp
-            subPath: tmp
+
+      assets:
+        type: emptyDir
+        globalMounts:
+          - path: /assets
+
+      nginx-logs:
+        type: emptyDir
+        globalMounts:
+          - path: /var/lib/nginx/logs
+
+      nginx-tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /var/lib/nginx/tmp
+
+      var-tmp-nginx:
+        type: emptyDir
+        globalMounts:
+          - path: /var/tmp/nginx
