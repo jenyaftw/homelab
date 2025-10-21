@@ -30,7 +30,9 @@ spec:
               tag: 0.7.6-nbxyz4
             securityContext:
               allowPrivilegeEscalation: false
-              capabilities: { drop: ["ALL"] }
+              capabilities: 
+                drop: ["ALL"]
+                add: ["SETGID", "SETUID", "NET_BIND_SERVICE"]
     service:
       app:
         controller: *app
