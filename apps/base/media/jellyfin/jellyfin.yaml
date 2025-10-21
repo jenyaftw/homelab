@@ -108,7 +108,7 @@ spec:
         enabled: true
         className: nginx
         hosts:
-          - host: &host jelly-internal.${BASE_DOMAIN}
+          - host: &host jelly.${BASE_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
