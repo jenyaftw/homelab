@@ -16,6 +16,7 @@ spec:
       interval: 12h
   values:
     controller:
+      electionID: internal-ingress-controller-leader
       service:
         type: "LoadBalancer"
       allowSnippetAnnotations: true
