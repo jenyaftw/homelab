@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - pvc.yaml
   - jellyfin/
+  - plex/
   - sabnzbd/
   - radarr/
   - sonarr/
