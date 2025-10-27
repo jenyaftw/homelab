@@ -49,10 +49,12 @@
   systemd.services.create-persist = {
     description = "Auto-create /persist partition on first boot";
     wantedBy = [ "multi-user.target" ];
+    unitConfig = {
+      ConditionPathExists = "!/dev/disk/by-label/PERSIST";
+    };
     serviceConfig = {
       Type = "oneshot";
       ExecStart = [ "/etc/persist.sh" ];
     };
-    conditionPathExists = "!/dev/disk/by-label/PERSIST";
   };
 }
