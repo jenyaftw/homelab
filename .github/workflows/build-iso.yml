@@ -1,0 +1,37 @@
+name: Build NixOS RAM-boot ISO
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:  # allows manual runs
+
+jobs:
+  build-iso:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   # so it can upload artifacts
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixos-25.05
+
+      - name: Show Nix version
+        run: nix --version
+
+      - name: Build NixOS ISO
+        run: |
+          cd nix
+          nix build .#nixosConfigurations.serenity-node.config.system.build.isoImage \
+            --extra-experimental-features 'nix-command flakes'
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nixos-ramboot-iso
+          path: nix/result/iso/*.iso
