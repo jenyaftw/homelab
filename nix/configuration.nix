@@ -17,4 +17,42 @@
   };
 
   security.sudo.enable = true;
+
+  fileSystems."/persist" = {
+    device = "/dev/disk/by-label/PERSIST";
+    fsType = "ext4";
+    neededForBoot = false;
+  };
+
+  environment.persistence."/persist" = {
+    directories = [
+      "/etc/nixos"
+      "/var/lib"
+    ];
+
+    files = [
+      "/etc/machine-id"
+    ];
+
+    users.jenya = {
+      directories = [
+        ".ssh"
+        ".local"
+        "Documents"
+      ];
+      files = [ ".bash_history" ];
+    };
+  };
+
+  environment.etc."persist.sh".source = ./scripts/persist.sh;
+
+  systemd.services.create-persist = {
+    description = "Auto-create /persist partition on first boot";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = [ "/etc/persist.sh" ];
+    };
+    conditionPathExists = "!/dev/disk/by-label/PERSIST";
+  };
 }
