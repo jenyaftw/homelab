@@ -4,4 +4,3 @@ namespace: kube-system
 resources:
   - repo.yaml
   - metallb.yaml
-  - ips.yaml
