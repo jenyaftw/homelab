@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - flux-system/
   - metallb/
-  # - ips.yaml
+  - ips.yaml
   - infra.yaml
   - apps.yaml
 
