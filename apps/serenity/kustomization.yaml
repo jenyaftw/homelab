@@ -7,7 +7,6 @@ resources:
   - ../base/arc
   - ../base/media
   - ../base/pgadmin
-  - ../base/orchard-bot
   - ../base/home-assistant
   - ../base/whoami
   - ../base/odoo
