@@ -53,7 +53,6 @@ spec:
       dns:
         type: LoadBalancer
         controller: *app
-        externalTrafficPolicy: Local
         ports:
           dns-tcp:
             enabled: true
