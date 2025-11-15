@@ -5,7 +5,7 @@ resources:
   # - ../base/podinfo
   - ../base/technitium
   - ../base/arc
-  # - ../base/media
+  - ../base/media
   - ../base/pgadmin
   - ../base/home-assistant
   - ../base/whoami
