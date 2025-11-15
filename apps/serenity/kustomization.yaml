@@ -4,11 +4,11 @@ resources:
   - ../base
   # - ../base/podinfo
   - ../base/technitium
-  - ../base/arc
+  # - ../base/arc
   - ../base/media
-  - ../base/pgadmin
-  - ../base/home-assistant
+  # - ../base/pgadmin
+  # - ../base/home-assistant
   - ../base/whoami
-  - ../base/odoo
+  # - ../base/odoo
   - ../base/changedetection
   - ../base/netboot
