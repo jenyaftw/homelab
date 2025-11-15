@@ -8,11 +8,11 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 4Ti
+    storage: 4.5Ti
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/data"
+    path: "/mnt/storage/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -25,5 +25,5 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 4Ti
+      storage: 4.5Ti
   volumeName: data-pv
