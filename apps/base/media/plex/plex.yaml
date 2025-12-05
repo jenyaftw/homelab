@@ -93,8 +93,6 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: "external.${BASE_DOMAIN}"
           external-dns.alpha.kubernetes.io/external: "true"
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
         className: public-nginx
         hosts:
           - host: &host plex.${BASE_DOMAIN}
