@@ -139,6 +139,8 @@ spec:
 
       transcode:
         type: emptyDir
+        globalMounts:
+          - path: /transcode
 
       dri:
         type: hostPath
@@ -146,13 +148,13 @@ spec:
         globalMounts:
           - path: /dev/dri
 
-      cache:
-        enabled: true
-        type: emptyDir
-        globalMounts:
-          - path: /config/Library/Application Support/Plex Media Server/Cache
-
-      logs:
-        type: emptyDir
-        globalMounts:
-          - path: /config/Library/Application Support/Plex Media Server/Logs
+      # Uncomment after initial setup when Plex has created the directory structure:
+      # cache:
+      #   type: emptyDir
+      #   globalMounts:
+      #     - path: /config/Library/Application Support/Plex Media Server/Cache
+      #
+      # logs:
+      #   type: emptyDir
+      #   globalMounts:
+      #     - path: /config/Library/Application Support/Plex Media Server/Logs
