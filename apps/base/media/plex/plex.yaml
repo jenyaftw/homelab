@@ -1,0 +1,158 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app plex
+  namespace: apps
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: "3.6.1"
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+      interval: 5m
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      plex:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/home-operations/plex
+              tag: 1.42.2.10156
+            env:
+              TZ: Europe/Kyiv
+              PLEX_ADVERTISE_URL: https://plex.${BASE_DOMAIN}:443
+              PLEX_NO_AUTH_NETWORKS: "10.0.0.0/16"
+            envFrom:
+              - secretRef:
+                  name: plex-secret
+            resources:
+              requests:
+                cpu: 500m
+                memory: 2Gi
+              limits:
+                memory: 8Gi
+            securityContext:
+              privileged: true
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /identity
+                    port: &port 32400
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probe
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /identity
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 30
+
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        runAsNonRoot: true
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups:
+          - 44
+          - 104
+          - 10000
+
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "external.${BASE_DOMAIN}"
+          external-dns.alpha.kubernetes.io/external: "true"
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+          nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+        className: public-nginx
+        hosts:
+          - host: &host plex.${BASE_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - secretName: ${BASE_DOMAIN}
+            hosts:
+              - *host
+      internal:
+        enabled: true
+        className: nginx
+        hosts:
+          - host: &host plex.${BASE_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - secretName: ${BASE_DOMAIN}
+            hosts:
+              - *host
+
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 64Gi
+        globalMounts:
+          - path: /config
+
+      media:
+        existingClaim: data-pvc
+        globalMounts:
+          - path: /data
+
+      transcode:
+        type: emptyDir
+
+      dri:
+        type: hostPath
+        hostPath: /dev/dri
+        globalMounts:
+          - path: /dev/dri
+
+      cache:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /config/Library/Application Support/Plex Media Server/Cache
+
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /config/Library/Application Support/Plex Media Server/Logs
