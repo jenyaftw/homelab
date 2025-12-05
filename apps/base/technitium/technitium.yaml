@@ -52,7 +52,6 @@ spec:
             port: 5380
       dns:
         type: LoadBalancer
-        externalTrafficPolicy: Local
         controller: *app
         ports:
           dns-tcp:

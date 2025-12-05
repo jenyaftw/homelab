@@ -19,7 +19,6 @@ spec:
       electionID: internal-ingress-controller-leader
       service:
         type: "LoadBalancer"
-        externalTrafficPolicy: Local
       allowSnippetAnnotations: true
     admissionWebhooks:
       enabled: false
