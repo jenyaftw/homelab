@@ -1,0 +1,198 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: qbittorrent
+  namespace: apps
+spec:
+  interval: 10m
+  timeout: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: "3.6.1"
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+      interval: 5m
+  releaseName: qbittorrent
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  test:
+    enable: true
+  driftDetection:
+    mode: enabled
+    ignore:
+      - paths: ["/spec/replicas"]
+        target:
+          kind: Deployment
+  values:
+    controllers:
+      qbittorrent:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/home-operations/qbittorrent
+              tag: 5.1.0@sha256:37eca2a88e69cb21c3896e0d4db53a6df88e97324e0f8ef9ce271a2d8cd72c06
+            env:
+              UMASK: "022"
+              QBT_WEBUI_PORT: &port 80
+              QBT_TORRENTING_PORT: &bt-port 55569
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v2/app/version
+                    port: *port
+                  initialDelaySeconds: 0
+                  timeoutSeconds: 10
+                  periodSeconds: 5
+                  failureThreshold: 5
+              readiness: *probes
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+              limits:
+                memory: 8Gi
+            securityContext:
+              runAsUser: 1000
+              runAsGroup: 1000
+              runAsNonRoot: true
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+          vuetorrent:
+            dependsOn: app
+            image:
+              repository: registry.k8s.io/git-sync/git-sync
+              tag: v4.4.0
+            args:
+              - --repo=https://github.com/WDaan/VueTorrent
+              - --ref=latest-release
+              - --period=86400s
+              - --root=/addons
+            resources:
+              requests:
+                cpu: 10m
+                memory: 25Mi
+        initContainers:
+          gluetun:
+            image:
+              repository: ghcr.io/qdm12/gluetun
+              tag: v3.40.0
+            env:
+              DOT: "off"
+              DNS_ADDRESS: 10.96.0.10
+              FIREWALL_OUTBOUND_SUBNETS: 10.0.0.0/8
+              FIREWALL_INPUT_PORTS: 80,8388,9999
+              FIREWALL_VPN_INPUT_PORTS: *bt-port
+              HEALTH_SERVER_ADDRESS: :9999
+              HEALTH_TARGET_ADDRESS: airvpn.org
+              VPN_TYPE: wireguard
+              VPN_INTERFACE: tun0
+              VPN_SERVICE_PROVIDER: airvpn
+              SERVER_REGIONS: "Europe"
+            envFrom:
+              - secretRef:
+                  name: qbittorrent-secret
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: 9999
+                  timeoutSeconds: 10
+                  periodSeconds: 30
+                  failureThreshold: 5
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: 9999
+                  initialDelaySeconds: 10
+                  periodSeconds: 10
+                  failureThreshold: 5
+            restartPolicy: Always
+            securityContext:
+              capabilities:
+                add:
+                  - NET_ADMIN
+              allowPrivilegeEscalation: false
+            lifecycle:
+              postStart:
+                exec:
+                  command: ["/bin/sh", "-c", "(ip rule del table 51820; ip -6 rule del table 51820) || true"]
+          socks5:
+            restartPolicy: Always
+            image:
+              repository: serjs/go-socks5-proxy
+              tag: latest@sha256:0af522996f402c03ecd985a87997158eabeb28935365e3a384df37eafcf740ea
+            env:
+              PROXY_PORT: &proxy-port 8388
+              REQUIRE_AUTH: "false"
+
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: "OnRootMismatch"
+
+    service:
+      app:
+        controller: qbittorrent
+        ports:
+          http:
+            port: *port
+      gluetun:
+        controller: qbittorrent
+        ports:
+          socks-proxy:
+            enabled: true
+            port: *proxy-port
+
+    ingress:
+      main:
+        enabled: true
+        className: nginx
+        hosts:
+          - host: &host qbit.${BASE_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - secretName: ${BASE_DOMAIN}
+            hosts:
+              - *host
+
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        globalMounts:
+          - path: /config
+      media:
+        existingClaim: data-pvc
+        globalMounts:
+          - path: /data
+      addons:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        globalMounts:
+          - path: /addons
+
