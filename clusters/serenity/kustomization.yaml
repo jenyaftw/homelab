@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - flux-system/
   - infra.yaml
+  - infra-configs.yaml
   - apps.yaml
 
 patches:

@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - repos/
-  - certs/
+  # - certs/  # Commented out: Certificate resources require cert-manager CRDs to be installed first
