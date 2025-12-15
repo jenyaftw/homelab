@@ -1,0 +1,59 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.bjw-s.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: externaldns-unifi
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: externaldns-unifi
+  interval: 30m
+  values:
+    fullnameOverride: externaldns-unifi
+    logLevel: &logLevel info
+    domainFilters:
+      - ${BASE_DOMAIN}
+    policy: sync
+    provider:
+      name: webhook
+      webhook:
+        image:
+          repository: ghcr.io/kashalls/external-dns-unifi-webhook
+          tag: v0.7.0
+        env:
+          - name: LOG_LEVEL
+            value: *logLevel
+          - name: UNIFI_HOST
+            value: https://10.0.0.1
+          - name: UNIFI_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: unifi-secret
+                key: UNIFI_API_KEY
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http-webhook
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: http-webhook
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+    resources:
+      requests:
+        cpu: 16m
+        memory: 90M
+      limits:
+        memory: 90M
+    serviceMonitor:
+      enabled: true
+    sources:
+      - gateway-httproute
+      - service
+    triggerLoopOnEvent: true
+    txtOwnerId: main
+    txtPrefix: "k8s."
