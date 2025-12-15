@@ -34,3 +34,9 @@ spec:
     auth:
       username: postgres
       existingSecret: postgres-secret
+
+    primary:
+      persistence:
+        enabled: true
+        storageClass: "local-path"
+        size: 8Gi

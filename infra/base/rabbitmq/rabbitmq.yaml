@@ -39,6 +39,11 @@ spec:
       existingPasswordSecret: rabbitmq-secret
       existingSecretPasswordKey: rabbitPassword
 
+    persistence:
+      enabled: true
+      storageClass: "local-path"
+      size: 4Gi
+
     ingress:
       enabled: true
       ingressClassName: nginx
