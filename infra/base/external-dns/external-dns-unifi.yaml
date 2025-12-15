@@ -4,6 +4,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: externaldns-unifi
+  namespace: infra
 spec:
   chartRef:
     kind: OCIRepository

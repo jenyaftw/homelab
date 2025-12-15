@@ -4,6 +4,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: externaldns-unifi
+  namespace: infra
 spec:
   interval: 15m
   layerSelector:
