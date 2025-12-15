@@ -4,3 +4,4 @@ resources:
   - ../base/cert-manager/cloudflare-secret.yaml
   - ../base/cert-manager/issuer.yaml
   - ../base/certs
+  - ../base/newt/dnsendpoint.yaml
