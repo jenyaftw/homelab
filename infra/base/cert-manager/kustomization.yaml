@@ -1,6 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cloudflare-secret.yaml
   - cert-manager.yaml
-  - issuer.yaml
+  # Moved to infra-configs: ClusterIssuer requires CRDs to be installed first
+  # - cloudflare-secret.yaml
+  # - issuer.yaml
