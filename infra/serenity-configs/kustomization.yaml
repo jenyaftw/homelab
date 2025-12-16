@@ -4,3 +4,4 @@ resources:
   - ../base/cert-manager/issuer.yaml
   - ../base/certs
   - ../base/newt/dnsendpoint.yaml
+  - ../base/metallb/pool.yaml
