@@ -13,7 +13,7 @@ spec:
   wait: true
   timeout: 5m0s
   dependsOn:
-    - name: metallb-config
+    - name: infra-configs
   decryption:
     provider: sops
     secretRef:
