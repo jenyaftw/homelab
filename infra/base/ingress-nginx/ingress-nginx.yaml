@@ -17,11 +17,8 @@ spec:
   values:
     controller:
       electionID: internal-ingress-controller-leader
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
-      kind: DaemonSet
       service:
-        type: "ClusterIP"
+        type: "LoadBalancer"
       allowSnippetAnnotations: true
     admissionWebhooks:
       enabled: false
