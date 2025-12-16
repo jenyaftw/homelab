@@ -14,9 +14,11 @@ spec:
         name: bjw-s
       interval: 5m
   install:
+    disableWait: true
     remediation:
       retries: -1
   upgrade:
+    disableWait: true
     cleanupOnFail: true
     remediation:
       retries: 3
