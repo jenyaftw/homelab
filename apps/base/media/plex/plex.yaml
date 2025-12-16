@@ -108,6 +108,8 @@ spec:
               - *host
       internal:
         enabled: true
+        annotations:
+          external-dns.alpha.kubernetes.io/internal: "true"
         className: nginx
         hosts:
           - host: &host plex.${BASE_DOMAIN}
