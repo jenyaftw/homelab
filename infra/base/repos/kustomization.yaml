@@ -10,3 +10,4 @@ resources:
   - bjw-s.yaml
   - external-dns.yaml
   - unifi.yaml
+  - metallb.yaml
