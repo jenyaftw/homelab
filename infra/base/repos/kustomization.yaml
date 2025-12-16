@@ -4,7 +4,6 @@ resources:
   - grafana.yaml
   - ingress-nginx.yaml
   - jetstack.yaml
-  - twuni.yaml
   - bitnami.yaml
   - tailscale.yaml
   - bjw-s.yaml
