@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 10m0s
   dependsOn:
-    - name: infra
+    - name: metallb-install
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -14,8 +14,6 @@ spec:
   prune: true
   wait: true
   timeout: 5m0s
-  dependsOn:
-    - name: metallb-install
   decryption:
     provider: sops
     secretRef:
