@@ -5,3 +5,4 @@ resources:
   - ../base/certs
   - ../base/newt/dnsendpoint.yaml
   - ../base/metallb/pool.yaml
+  - ../base/ingress-nginx

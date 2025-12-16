@@ -5,7 +5,7 @@ resources:
   - ../base/metallb
   # - ../base/monitoring
   - ../base/tailscale
-  - ../base/ingress-nginx
+  # - ../base/ingress-nginx  # Moved to infra-configs to ensure MetalLB pool exists first
   - ../base/cert-manager
   - ../base/external-dns
 #  - ../base/cloudflared
