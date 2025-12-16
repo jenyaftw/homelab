@@ -3,11 +3,11 @@ kind: Kustomization
 resources:
   - pvc.yaml
   - jellyfin/
-  - plex/
-  - qbittorrent/
-  - sabnzbd/
-  - radarr/
-  - sonarr/
-  - prowlarr/
-  - profilarr/
-  - flaresolverr/
+  # - plex/
+  # - qbittorrent/
+  # - sabnzbd/
+  # - radarr/
+  # - sonarr/
+  # - prowlarr/
+  # - profilarr/
+  # - flaresolverr/
