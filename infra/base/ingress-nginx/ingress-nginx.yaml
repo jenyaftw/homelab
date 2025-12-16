@@ -22,8 +22,6 @@ spec:
       electionID: internal-ingress-controller-leader
       service:
         type: "LoadBalancer"
-        annotations:
-          metallb.universe.tf/address-pool: default-pool
       allowSnippetAnnotations: true
     admissionWebhooks:
       enabled: false
