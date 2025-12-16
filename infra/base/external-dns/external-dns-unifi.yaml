@@ -52,7 +52,7 @@ spec:
     serviceMonitor:
       enabled: false
     extraArgs:
-      - --ignore-ingress-tls-spec=true
+      - --ignore-ingress-tls-spec
     policy: create-only
     sources: ["ingress", "service"]
     txtOwnerId: main
