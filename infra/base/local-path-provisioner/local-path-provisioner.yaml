@@ -120,10 +120,10 @@ data:
     spec:
       priorityClassName: system-node-critical
       tolerations:
-        - key: node.kubernetes.io/disk-pressure
-          operator: Exists
-          effect: NoSchedule
+        - operator: Exists
       containers:
         - name: helper-pod
-          image: busybox:latest
+          image: busybox:1.36
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
