@@ -4,10 +4,10 @@ resources:
   - pvc.yaml
   - jellyfin/
   # - plex/
-  # - qbittorrent/
-  # - sabnzbd/
-  # - radarr/
-  # - sonarr/
-  # - prowlarr/
-  # - profilarr/
-  # - flaresolverr/
+  - qbittorrent/
+  - sabnzbd/
+  - radarr/
+  - sonarr/
+  - prowlarr/
+  - profilarr/
+  - flaresolverr/
