@@ -7,13 +7,11 @@ metadata:
     type: nfs
 spec:
   storageClassName: manual
-  capacity:
-    storage: 4.5Ti
   accessModes:
     - ReadWriteMany
   nfs:
     server: 10.0.10.4
-    path: "/export/media"
+    path: "/export/media/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -24,7 +22,4 @@ spec:
   storageClassName: manual
   accessModes:
     - ReadWriteMany
-  resources:
-    requests:
-      storage: 4.5Ti
   volumeName: data-pv
