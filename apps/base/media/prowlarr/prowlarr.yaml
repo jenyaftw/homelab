@@ -39,6 +39,8 @@ spec:
               tag: 2.3.1.5238@sha256:4394dff2311238bf5c31e006872122ed4e5f6bf042d33528d80acd44a09c57f7
             env:
               TZ: Europe/Kyiv
+              # Store DataProtection keys in persistent config
+              DOTNET_DataProtection__KeyPath: /config/dataprotection-keys
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -71,6 +73,14 @@ spec:
         size: 1Gi
         globalMounts:
           - path: /config
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
+      cache:
+        type: emptyDir
+        globalMounts:
+          - path: /config/Cache
 
     ingress:
       main:
