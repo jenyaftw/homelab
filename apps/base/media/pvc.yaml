@@ -7,6 +7,8 @@ metadata:
     type: nfs
 spec:
   storageClassName: manual
+  capacity:
+    storage: 4.5Ti
   accessModes:
     - ReadWriteMany
   nfs:
@@ -22,4 +24,7 @@ spec:
   storageClassName: manual
   accessModes:
     - ReadWriteMany
+  resources:
+    requests:
+      storage: 4.5Ti
   volumeName: data-pv
