@@ -10,3 +10,4 @@ resources:
   - k8s-at-home.yaml
   - bjw-s.yaml
   - bitnami.yaml
+  - langfuse.yaml

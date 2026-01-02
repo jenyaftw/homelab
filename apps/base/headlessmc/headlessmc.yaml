@@ -1,0 +1,71 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app headlessmc
+  namespace: apps
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: "3.6.1"
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+      interval: 5m
+  install:
+    disableWait: true
+    remediation:
+      retries: -1
+  upgrade:
+    disableWait: true
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      headlessmc:
+        containers:
+          app:
+            image:
+              repository: 3arthqu4ke/headlessmc
+              tag: latest
+            env:
+              TZ: Europe/Kyiv
+            resources:
+              requests:
+                cpu: 100m
+                memory: 1000Mi
+              limits:
+                memory: 4Gi
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
+
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        runAsNonRoot: true
+        fsGroupChangePolicy: OnRootMismatch
+
+    service:
+      app:
+        controller: *app
+        ports:
+          minecraft:
+            port: 25565
+
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 10Gi
+        storageClass: local-path
+        globalMounts:
+          - path: /headlessmc
