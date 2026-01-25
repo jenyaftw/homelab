@@ -9,7 +9,5 @@ resources:
   # - ../base/pgadmin
   # - ../base/home-assistant
   - ../base/whoami
-  - ../base/headlessmc
   # - ../base/odoo
-  - ../base/changedetection
   - ../base/netboot
