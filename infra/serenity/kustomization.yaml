@@ -13,4 +13,3 @@ resources:
   # - ../base/postgres
 #  - ../base/redis
   # - ../base/generic-device-plugin
-  - ../base/newt
