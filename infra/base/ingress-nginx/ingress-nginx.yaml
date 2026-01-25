@@ -19,6 +19,9 @@ spec:
       electionID: internal-ingress-controller-leader
       service:
         type: "LoadBalancer"
+        loadBalancerIP: "${CLUSTER_IP}"
+        annotations:
+          metallb.io/allow-shared-ip: "ingress-nginx"
       allowSnippetAnnotations: true
     admissionWebhooks:
       enabled: false
@@ -51,6 +54,8 @@ spec:
       service:
         type: "LoadBalancer"
         loadBalancerIP: "${CLUSTER_IP}"
+        annotations:
+          metallb.io/allow-shared-ip: "ingress-nginx"
         ports:
           http: 8080
           https: 8443
