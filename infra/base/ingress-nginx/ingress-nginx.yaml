@@ -49,9 +49,16 @@ spec:
         default: false
         controllerValue: "k8s.io/public-ingress-nginx"
       service:
-        type: "ClusterIP"
-        annotations:
-          tailscale.com/expose: "true"
+        type: "LoadBalancer"
+        ports:
+          - name: http
+            port: 8080
+            targetPort: 80
+            protocol: TCP
+          - name: https
+            port: 8443
+            targetPort: 443
+            protocol: TCP
       allowSnippetAnnotations: true
     admissionWebhooks:
       enabled: false
