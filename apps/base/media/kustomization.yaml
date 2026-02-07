@@ -4,7 +4,7 @@ resources:
   - pvc.yaml
   - jellyfin/
   # - plex/
-  # - qbittorrent/
+  - qbittorrent/
   - sabnzbd/
   - radarr/
   - sonarr/
